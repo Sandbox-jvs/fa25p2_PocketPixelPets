@@ -1,24 +1,47 @@
 package com.talentengine.pocketpixelpets;
 
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.widget.ImageView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private AnimationDrawable otterAnim;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_sign_up);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        ImageView otterImage = findViewById(R.id.otterImage);
+
+        otterAnim = (AnimationDrawable) otterImage.getDrawable();
+
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (otterAnim == null) return;
+
+        if (hasFocus) {
+            if (!otterAnim.isRunning()) {
+                otterAnim.start();
+            }
+        } else {
+            if (otterAnim.isRunning()) {
+                otterAnim.stop();
+            }
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (otterAnim != null && otterAnim.isRunning()) {
+            otterAnim.stop();
+        }
     }
 }

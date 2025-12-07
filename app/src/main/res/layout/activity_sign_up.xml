@@ -8,46 +8,47 @@
     android:background="#E9FFF6"
     tools:context=".SignUpActivity">
 
-    <!-- Optional Pixel Otter -->
     <ImageView
         android:id="@+id/otterImage"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_marginTop="60dp"
+        android:src="@drawable/otter_wave_anim"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/otter_sprite"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/logoImage"
+        app:layout_constraintVertical_chainStyle="packed" />
 
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <!-- Optional Logo -->
     <ImageView
         android:id="@+id/logoImage"
         android:layout_width="290dp"
         android:layout_height="205dp"
         android:adjustViewBounds="true"
-        android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
-        android:src="@drawable/app_title"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/app_title_sparkle_frame_1"
+        app:layout_constraintTop_toBottomOf="@id/otterImage"
+        app:layout_constraintBottom_toTopOf="@id/usernameInputLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/otterImage" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- USERNAME INPUT -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:hint="@string/username"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
         app:boxStrokeColor="#A5D6C4"
         app:hintTextColor="#6CA893"
-
-        app:layout_constraintEnd_toEndOf="parent"
+        app:boxBackgroundMode="outline"
+        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintBottom_toTopOf="@id/passwordInputLayout"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImage">
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/usernameInput"
@@ -56,47 +57,46 @@
             android:textColor="#6CA893" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- PASSWORD INPUT -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passwordInputLayout"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="40dp"
         android:hint="@string/password"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
+        app:passwordToggleEnabled="true"
         app:boxStrokeColor="#A5D6C4"
         app:hintTextColor="#6CA893"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:boxBackgroundMode="outline"
         app:layout_constraintTop_toBottomOf="@id/usernameInputLayout"
-        app:passwordToggleEnabled="true">
+        app:layout_constraintBottom_toTopOf="@id/signupButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/passwordInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColor="#6CA893"
-            app:boxStrokeColor="#A5D6C4" />
-
+            android:textColor="#6CA893" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- SIGN UP BUTTON -->
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="12dp"
         android:backgroundTint="#A5D6C4"
         android:text="@string/sign_up"
         android:textAllCaps="false"
         android:textColor="#6CA893"
         app:cornerRadius="24dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/passwordInputLayout" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
