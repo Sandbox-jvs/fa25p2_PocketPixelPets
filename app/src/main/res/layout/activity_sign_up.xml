@@ -8,32 +8,26 @@
     android:background="#E9FFF6"
     tools:context=".SignUpActivity">
 
-    <ImageView
-        android:id="@+id/otterImage"
+    <com.talentengine.pocketpixelpets.SpriteView
+        android:id="@+id/otterSpriteView"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:src="@drawable/otter_wave_anim"
         android:contentDescription="@string/app_name"
-        android:adjustViewBounds="true"
-        android:scaleType="centerInside"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/logoSpriteView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/logoImage"
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <ImageView
-        android:id="@+id/logoImage"
+    <com.talentengine.pocketpixelpets.SpriteView
+        android:id="@+id/logoSpriteView"
         android:layout_width="290dp"
         android:layout_height="205dp"
-        android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/app_title_sparkle_anim"
-        app:layout_constraintTop_toBottomOf="@id/otterImage"
         app:layout_constraintBottom_toTopOf="@id/usernameInputLayout"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/otterSpriteView"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/usernameInputLayout"
@@ -45,7 +39,7 @@
         app:boxStrokeColor="#A5D6C4"
         app:hintTextColor="#6CA893"
         app:boxBackgroundMode="outline"
-        app:layout_constraintTop_toBottomOf="@id/logoImage"
+        app:layout_constraintTop_toBottomOf="@id/logoSpriteView"
         app:layout_constraintBottom_toTopOf="@id/passwordInputLayout"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
