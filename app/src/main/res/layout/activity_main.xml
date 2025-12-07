@@ -12,7 +12,7 @@
         android:id="@+id/otterImage"
         android:layout_width="220dp"
         android:layout_height="220dp"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="60dp"
         android:contentDescription="@string/app_name"
         android:src="@drawable/otter_sprite"
         app:layout_constraintEnd_toEndOf="parent"
@@ -22,8 +22,8 @@
 
     <ImageView
         android:id="@+id/logoImage"
-        android:layout_width="335dp"
-        android:layout_height="253dp"
+        android:layout_width="290dp"
+        android:layout_height="205dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
         android:scaleType="fitCenter"
