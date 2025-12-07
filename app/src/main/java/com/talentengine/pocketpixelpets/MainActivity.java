@@ -14,7 +14,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);  // make sure this matches your XML file name
+        setContentView(R.layout.activity_main);
 
         // 🦦 Otter animation
         ImageView otterImage = findViewById(R.id.otterImage);

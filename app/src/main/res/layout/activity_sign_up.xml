@@ -29,7 +29,7 @@
         android:adjustViewBounds="true"
         android:scaleType="fitCenter"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/app_title_sparkle_frame_1"
+        android:src="@drawable/app_title_sparkle_anim"
         app:layout_constraintTop_toBottomOf="@id/otterImage"
         app:layout_constraintBottom_toTopOf="@id/usernameInputLayout"
         app:layout_constraintStart_toStartOf="parent"
