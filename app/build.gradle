@@ -49,9 +49,13 @@ dependencies {
         androidTestImplementation libs.espresso.core
 
         // Room (correct + matching versions)
-        implementation "androidx.room:room-runtime:2.6.1"
-        annotationProcessor "androidx.room:room-compiler:2.6.1"
-        implementation "androidx.room:room-ktx:2.6.1"
+        def room_version = "2.8.4"
+
+        implementation "androidx.room:room-runtime:$room_version"
+
+        // If this project only uses Java source, use the Java annotationProcessor
+        // No additional plugins are necessary
+        annotationProcessor "androidx.room:room-compiler:$room_version"
     }
 
 }
