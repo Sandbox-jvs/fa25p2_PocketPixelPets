@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         Log.d(TAG, "MainActivity onCreate called");
 
         database = AppDatabase.getDatabase(this);
+        database.getOpenHelper().getWritableDatabase();
 
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
