@@ -1,12 +1,14 @@
 package com.talentengine.pocketpixelpets.database.entities;
 
+import static com.talentengine.pocketpixelpets.database.AppDatabase.PETS_TABLE;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(tableName = "pets")
+@Entity(tableName = PETS_TABLE)
 public class Pets {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
