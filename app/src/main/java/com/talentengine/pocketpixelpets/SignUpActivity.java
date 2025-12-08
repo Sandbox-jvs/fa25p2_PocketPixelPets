@@ -1,10 +1,13 @@
 package com.talentengine.pocketpixelpets;
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
 
 public class SignUpActivity extends AppCompatActivity {
 
@@ -14,7 +17,15 @@ public class SignUpActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_sign_up);
+
+        MaterialButton signupButton = findViewById(R.id.signupButton);
+        signupButton.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
+            startActivity(intent);
+
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
 
         otterSpriteView = findViewById(R.id.otterSpriteView);
         otterSpriteView.setSpriteSheet(

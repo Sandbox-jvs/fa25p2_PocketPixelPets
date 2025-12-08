@@ -1,8 +1,14 @@
 package com.talentengine.pocketpixelpets;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.google.android.material.transition.MaterialFade;
+
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.button.MaterialButton;
 
 import com.talentengine.pocketpixelpets.database.AppDatabase;
 
@@ -17,6 +23,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         database = AppDatabase.getDatabase(this);
+
+
+        MaterialButton signupButton = findViewById(R.id.signupButton);
+        signupButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
+            startActivity(intent);
+
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
 
         otterSpriteView = findViewById(R.id.otterSpriteView);
         otterSpriteView.setSpriteSheet(

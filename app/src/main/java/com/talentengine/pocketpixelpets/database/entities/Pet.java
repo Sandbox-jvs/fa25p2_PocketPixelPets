@@ -1,7 +1,5 @@
 package com.talentengine.pocketpixelpets.database.entities;
 
-import static com.talentengine.pocketpixelpets.database.AppDatabase.PETS_TABLE;
-
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -12,6 +10,8 @@ import java.util.Objects;
 public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
+  
+    private int user_id
     private String name;
     private int hunger;
     private int hygiene;
@@ -21,7 +21,7 @@ public class Pet {
     private String pet_personality;
     private String favorite_food;
     private String background;
-    public LocalDateTime created_at;
+    private LocalDateTime created_at;
 
     public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
         this.name = name;
@@ -36,8 +36,8 @@ public class Pet {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Pet pets = (Pet) o;
-        return pet_id == pets.pet_id && hunger == pets.hunger && hygiene == pets.hygiene && happiness == pets.happiness && Objects.equals(name, pets.name) && Objects.equals(pet_type, pets.pet_type) && Objects.equals(pet_color, pets.pet_color) && Objects.equals(pet_personality, pets.pet_personality) && Objects.equals(favorite_food, pets.favorite_food) && Objects.equals(background, pets.background) && Objects.equals(created_at, pets.created_at);
+        Pet pet = (Pet) o;
+        return pet_id == pet.pet_id && hunger == pet.hunger && hygiene == pet.hygiene && happiness == pet.happiness && Objects.equals(name, pet.name) && Objects.equals(pet_type, pet.pet_type) && Objects.equals(pet_color, pet.pet_color) && Objects.equals(pet_personality, pet.pet_personality) && Objects.equals(favorite_food, pet.favorite_food) && Objects.equals(background, pet.background) && Objects.equals(created_at, pet.created_at);
     }
 
     @Override
