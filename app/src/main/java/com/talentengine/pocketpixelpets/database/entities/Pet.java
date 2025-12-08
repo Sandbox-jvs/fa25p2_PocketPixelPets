@@ -10,6 +10,8 @@ import java.util.Objects;
 public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
+
+    private int user_id;
     private String name;
     private int hunger;
     private int hygiene;
