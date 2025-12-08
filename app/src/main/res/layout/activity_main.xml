@@ -8,33 +8,26 @@
     android:background="#E9FFF6"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/otterImage"
+    <com.talentengine.pocketpixelpets.SpriteView
+        android:id="@+id/otterSpriteView"
         android:layout_width="220dp"
         android:layout_height="220dp"
         android:contentDescription="@string/app_name"
-        android:scaleType="centerInside"
-        android:src="@drawable/otter_wave_anim"
-        app:layout_constraintBottom_toTopOf="@id/logoImage"
+        app:layout_constraintBottom_toTopOf="@id/logoSpriteView"
         app:layout_constraintEnd_toEndOf="parent"
-
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
         app:layout_constraintVertical_chainStyle="packed" />
 
-    <ImageView
-        android:id="@+id/logoImage"
+    <com.talentengine.pocketpixelpets.SpriteView
+        android:id="@+id/logoSpriteView"
         android:layout_width="290dp"
         android:layout_height="205dp"
-        android:adjustViewBounds="true"
         android:contentDescription="@string/app_name"
-        android:scaleType="fitCenter"
-        android:src="@drawable/app_title_sparkle_anim"
         app:layout_constraintBottom_toTopOf="@id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/otterImage" />
+        app:layout_constraintTop_toBottomOf="@id/otterSpriteView"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/loginButton"
@@ -51,7 +44,7 @@
         app:layout_constraintBottom_toTopOf="@id/signupButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/logoImage" />
+        app:layout_constraintTop_toBottomOf="@id/logoSpriteView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/signupButton"

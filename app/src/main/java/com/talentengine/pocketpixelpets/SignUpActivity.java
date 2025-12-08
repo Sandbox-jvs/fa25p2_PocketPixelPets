@@ -8,58 +8,42 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    private AnimationDrawable otterAnim;
-    private AnimationDrawable logoSparkleAnim;
+    private SpriteView otterSpriteView;
+    private SpriteView logoSpriteView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ImageView otterImage = findViewById(R.id.otterImage);
-        if (otterImage != null && otterImage.getDrawable() instanceof AnimationDrawable) {
-            otterAnim = (AnimationDrawable) otterImage.getDrawable();
-        }
+        otterSpriteView = findViewById(R.id.otterSpriteView);
+        otterSpriteView.setSpriteSheet(
+                R.drawable.otter_sprite_sheet_purple,
+                2,
+                3
+        );
+        otterSpriteView.setFrameDuration(900);
 
-        ImageView logoImage = findViewById(R.id.logoImage);
-        if (logoImage != null && logoImage.getDrawable() instanceof AnimationDrawable) {
-            logoSparkleAnim = (AnimationDrawable) logoImage.getDrawable();
-        }
+        logoSpriteView = findViewById(R.id.logoSpriteView);
+        logoSpriteView.setSpriteSheet(
+                R.drawable.logo_sprite_sheet,
+                2,
+                3
+        );
+        logoSpriteView.setFrameDuration(1000);
     }
 
     @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-        super.onWindowFocusChanged(hasFocus);
-
-        if (hasFocus) {
-            if (otterAnim != null && !otterAnim.isRunning()) {
-                otterAnim.start();
-            }
-
-            if (logoSparkleAnim != null && !logoSparkleAnim.isRunning()) {
-                logoSparkleAnim.start();
-            }
-        } else {
-            if (otterAnim != null && otterAnim.isRunning()) {
-                otterAnim.stop();
-            }
-
-            if (logoSparkleAnim != null && logoSparkleAnim.isRunning()) {
-                logoSparkleAnim.stop();
-            }
-        }
+    protected void onResume() {
+        super.onResume();
+        if (otterSpriteView != null) otterSpriteView.start();
+        if (logoSpriteView != null) logoSpriteView.start();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-
-        if (otterAnim != null && otterAnim.isRunning()) {
-            otterAnim.stop();
-        }
-
-        if (logoSparkleAnim != null && logoSparkleAnim.isRunning()) {
-            logoSparkleAnim.stop();
-        }
+    protected void onPause() {
+        super.onPause();
+        if (otterSpriteView != null) otterSpriteView.stop();
+        if (logoSpriteView != null) logoSpriteView.stop();
     }
 }
