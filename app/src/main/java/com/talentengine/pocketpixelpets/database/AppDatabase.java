@@ -11,14 +11,14 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.talentengine.pocketpixelpets.MainActivity;
-import com.talentengine.pocketpixelpets.database.entities.Pets;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
 import com.talentengine.pocketpixelpets.database.entities.User;
 import com.talentengine.pocketpixelpets.database.typeConverter.LocalDateTypeConverter;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Pets.class, User.class}, version = 1, exportSchema = false)
+@Database(entities = {Pet.class, User.class}, version = 1, exportSchema = false)
 @TypeConverters({LocalDateTypeConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static volatile AppDatabase INSTANCE;
