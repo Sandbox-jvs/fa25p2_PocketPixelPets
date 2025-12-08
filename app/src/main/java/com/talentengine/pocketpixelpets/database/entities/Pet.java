@@ -1,5 +1,7 @@
 package com.talentengine.pocketpixelpets.database.entities;
 
+import static com.talentengine.pocketpixelpets.database.AppDatabase.PETS_TABLE;
+
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -11,7 +13,7 @@ public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
   
-    private int user_id
+    private int user_id;
     private String name;
     private int hunger;
     private int hygiene;
