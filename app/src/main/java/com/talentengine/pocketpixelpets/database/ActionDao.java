@@ -1,3 +1,9 @@
+/**
+ * ActionDao.java | The Action Dao interface to implement SQL with the Data Object
+ * @author Cristian Perez
+ * @since 12/7/25
+ */
+
 package com.talentengine.pocketpixelpets.database;
 
 import androidx.room.Dao;
