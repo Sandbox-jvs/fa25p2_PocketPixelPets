@@ -1,3 +1,9 @@
+/**
+ * Action.java | The action table Entity
+ * @author Cristian Perez
+ * @since 12/7/25
+ */
+
 package com.talentengine.pocketpixelpets.database.entities;
 
 import androidx.room.Entity;
