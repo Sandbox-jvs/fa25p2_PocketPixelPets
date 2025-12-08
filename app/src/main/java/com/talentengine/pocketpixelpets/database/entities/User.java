@@ -10,6 +10,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity(tableName = "users")
 public class User {
@@ -44,6 +45,22 @@ public class User {
 
     public LocalDateTime getCreated_at() {
         return created_at;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return user_id == user.user_id && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(user_id, password, created_at, username);
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setCreated_at(LocalDateTime created_at) {

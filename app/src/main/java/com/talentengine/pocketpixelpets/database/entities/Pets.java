@@ -21,7 +21,7 @@ public class Pets {
     private String pet_personality;
     private String favorite_food;
     private String background;
-    private LocalDateTime created_at;
+    public LocalDateTime created_at;
 
     public Pets(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
         this.name = name;

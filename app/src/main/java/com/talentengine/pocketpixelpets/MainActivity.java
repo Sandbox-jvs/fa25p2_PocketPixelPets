@@ -4,8 +4,11 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+import com.talentengine.pocketpixelpets.database.AppDatabase;
 
+public class MainActivity extends AppCompatActivity {
+    AppDatabase database;
+    public static final String TAG = "TE_VIRTUALPET";
     private SpriteView otterSpriteView;
     private SpriteView logoSpriteView;
 
@@ -13,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database = AppDatabase.getDatabase(this);
 
         otterSpriteView = findViewById(R.id.otterSpriteView);
         otterSpriteView.setSpriteSheet(
