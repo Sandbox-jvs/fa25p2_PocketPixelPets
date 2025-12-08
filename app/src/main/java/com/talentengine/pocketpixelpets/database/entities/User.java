@@ -42,12 +42,8 @@ public class User {
         created_at = LocalDateTime.now();
     }
 
-    public LocalDateTime getCreated_at() {
+    public LocalDateTime getCreatedAt() {
         return created_at;
-    }
-
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
     }
 
     public String getPassword() {
