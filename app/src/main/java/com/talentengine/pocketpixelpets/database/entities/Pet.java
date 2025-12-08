@@ -6,12 +6,12 @@ import androidx.room.PrimaryKey;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-@Entity(tableName = "pets")
+@Entity(tableName = PETS_TABLE)
 public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
-
-    private int user_id;
+  
+    private int user_id
     private String name;
     private int hunger;
     private int hygiene;

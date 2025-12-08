@@ -10,8 +10,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 
-public class MainActivity extends AppCompatActivity {
+import com.talentengine.pocketpixelpets.database.AppDatabase;
 
+public class MainActivity extends AppCompatActivity {
+    AppDatabase database;
+    public static final String TAG = "TE_VIRTUALPET";
     private SpriteView otterSpriteView;
     private SpriteView logoSpriteView;
 
@@ -19,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        database = AppDatabase.getDatabase(this);
 
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
