@@ -1,0 +1,73 @@
+/**
+ * User.java | The table of users and the User entity
+ * @author Cristian Perez
+ * @since 12/7/25
+ */
+
+package com.talentengine.pocketpixelpets.database.entities;
+
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
+
+import java.time.LocalDateTime;
+
+@Entity(tableName = "users")
+public class User {
+    @PrimaryKey(autoGenerate = true)
+    private int user_id;
+    /**
+     * The saved password of the user
+     */
+    private String password;
+
+    /**
+     * Stores the date and time the user created their account
+     */
+    private LocalDateTime created_at;
+
+    /**
+     * The username of the account
+     */
+    private String username;
+
+    /**
+     * Given a username and password, generate a user. Automatically collect the current time
+     * @param username The username of the user
+     * @param password The password of the user
+     */
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+
+        created_at = LocalDateTime.now();
+    }
+
+    public LocalDateTime getCreated_at() {
+        return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+}
+
