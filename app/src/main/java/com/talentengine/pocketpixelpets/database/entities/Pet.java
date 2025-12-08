@@ -25,6 +25,14 @@ public class Pet {
     private String background;
     private LocalDateTime created_at;
 
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
+    }
+
     public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
         this.name = name;
         this.pet_type = pet_type;
