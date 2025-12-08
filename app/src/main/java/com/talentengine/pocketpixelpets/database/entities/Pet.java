@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 @Entity(tableName = "pets")
-public class Pets {
+public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
     private String name;
@@ -21,7 +21,7 @@ public class Pets {
     private String background;
     private LocalDateTime created_at;
 
-    public Pets(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
+    public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
         this.name = name;
         this.pet_type = pet_type;
         this.pet_color = pet_color;
@@ -34,8 +34,8 @@ public class Pets {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Pets pets = (Pets) o;
-        return pet_id == pets.pet_id && hunger == pets.hunger && hygiene == pets.hygiene && happiness == pets.happiness && Objects.equals(name, pets.name) && Objects.equals(pet_type, pets.pet_type) && Objects.equals(pet_color, pets.pet_color) && Objects.equals(pet_personality, pets.pet_personality) && Objects.equals(favorite_food, pets.favorite_food) && Objects.equals(background, pets.background) && Objects.equals(created_at, pets.created_at);
+        Pet pet = (Pet) o;
+        return pet_id == pet.pet_id && hunger == pet.hunger && hygiene == pet.hygiene && happiness == pet.happiness && Objects.equals(name, pet.name) && Objects.equals(pet_type, pet.pet_type) && Objects.equals(pet_color, pet.pet_color) && Objects.equals(pet_personality, pet.pet_personality) && Objects.equals(favorite_food, pet.favorite_food) && Objects.equals(background, pet.background) && Objects.equals(created_at, pet.created_at);
     }
 
     @Override
