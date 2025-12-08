@@ -22,8 +22,8 @@ import java.util.concurrent.Executors;
  * @author Jessica Sandoval
  * @since 12/07/2025
  */
+@TypeConverters(LocalDateTypeConverter.class)
 @Database(entities = {Pet.class, User.class}, version = 1, exportSchema = false)
-@TypeConverters({LocalDateTypeConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "pixelPets_database";
     //Volatile data will only ever live in RAM
@@ -57,6 +57,7 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 //Make sure it's still null after synchronization and that nothing else made a reference to it
                 if(INSTANCE == null) {
+                    Log.d(MainActivity.TAG, "Creating Room databse instance...");
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                             .allowMainThreadQueries()
                             .addCallback(addDefaultValues)
@@ -77,4 +78,5 @@ public abstract class AppDatabase extends RoomDatabase {
     };
 
 
+    public abstract PetDao PetDao();
 }
