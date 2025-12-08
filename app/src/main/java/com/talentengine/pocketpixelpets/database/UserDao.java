@@ -20,6 +20,7 @@ public interface UserDao {
     User getUserByUsername(String username);
 
     // Get a list of all the users
+    //TODO: Change 'users' to be a static variable from the database
     @Query("SELECT * FROM users")
     List<User> getAllUsers();
 }
