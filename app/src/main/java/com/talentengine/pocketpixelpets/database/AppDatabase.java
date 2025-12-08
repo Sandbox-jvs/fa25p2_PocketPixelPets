@@ -18,22 +18,52 @@ import com.talentengine.pocketpixelpets.database.typeConverter.LocalDateTypeConv
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Jessica Sandoval
+ * @since 12/07/2025
+ */
 @Database(entities = {Pet.class, User.class}, version = 1, exportSchema = false)
 @TypeConverters({LocalDateTypeConverter.class})
 public abstract class AppDatabase extends RoomDatabase {
-    private static volatile AppDatabase INSTANCE;
     private static final String DATABASE_NAME = "pixelPets_database";
+    //Volatile data will only ever live in RAM
+    private static volatile AppDatabase INSTANCE;
+
     public static final String PETS_TABLE = "pets";
+    /**
+     * We don't want to run multiple processes on the main UI thread. One thread is used to display
+     * the application to the user. If this same thread is used for another process, such as query
+     * the database, the UI can freeze trying to get results back from the database.
+     */
     public static final int NUMBER_OF_THREADS = 4;
+
+    /** Child processee that will run in the background. Create a service that will supply threads for us
+     * to do database operations. Create them all at startup and put them in a pool (Executors), and we do
+     * need to do database operations, pull something out of the pool (newFixedThreadPool), then return it
+     * to the pool when finished.
+     */
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-
+    /**
+     * Avoids having multiple instances of the database in memory at a given time.  Prevents race conditions
+     * from occurring where two process conflict - Ex: One is trying to query from a table while another
+     * attempts to write.
+     * @param context
+     * @return an instance of out virtual pet database
+     */
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
-            INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
-                    .allowMainThreadQueries()
-                    .addCallback(addDefaultValues)
-                    .build();
+            // synchronized ensures that the database class supplied is locked into a single thread
+            synchronized (AppDatabase.class) {
+                //Make sure it's still null after synchronization and that nothing else made a reference to it
+                if(INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
+                            .allowMainThreadQueries()
+                            .addCallback(addDefaultValues)
+                            .build();
+                }
+            }
+
         }
         return INSTANCE;
     }
