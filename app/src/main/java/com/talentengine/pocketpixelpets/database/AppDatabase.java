@@ -11,6 +11,7 @@ import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.talentengine.pocketpixelpets.MainActivity;
+import com.talentengine.pocketpixelpets.database.entities.Action;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 import com.talentengine.pocketpixelpets.database.entities.User;
 import com.talentengine.pocketpixelpets.database.typeConverter.LocalDateTypeConverter;
@@ -23,10 +24,10 @@ import java.util.concurrent.Executors;
  * @since 12/07/2025
  */
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {Pet.class, User.class}, version = 1, exportSchema = false)
+@Database(entities = {Pet.class, Action.class, User.class}, version = 2, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "pixelPets_database";
-    //Volatile data will only ever live in RAM
+    //Volatile data will only ever live in RAM and ensure thread visibility; this is where the singleton lives
     private static volatile AppDatabase INSTANCE;
 
     public static final String PETS_TABLE = "pets";
@@ -45,7 +46,7 @@ public abstract class AppDatabase extends RoomDatabase {
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     /**
-     * Avoids having multiple instances of the database in memory at a given time.  Prevents race conditions
+     * Singleton Accessor - Avoids having multiple instances of the database in memory at a given time.  Prevents race conditions
      * from occurring where two process conflict - Ex: One is trying to query from a table while another
      * attempts to write.
      * @param context
@@ -57,8 +58,9 @@ public abstract class AppDatabase extends RoomDatabase {
             synchronized (AppDatabase.class) {
                 //Make sure it's still null after synchronization and that nothing else made a reference to it
                 if(INSTANCE == null) {
-                    Log.d(MainActivity.TAG, "Creating Room databse instance...");
+                    Log.d(MainActivity.TAG, "Creating Room database instance...");
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
+                            .fallbackToDestructiveMigration()
                             .allowMainThreadQueries()
                             .addCallback(addDefaultValues)
                             .build();
@@ -79,4 +81,5 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
     public abstract PetDao PetDao();
+    public abstract ActionDao actionDao();
 }

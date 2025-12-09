@@ -3,9 +3,6 @@ package com.talentengine.pocketpixelpets.database;
 import android.app.Application;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-import androidx.room.InvalidationTracker;
-
 import com.talentengine.pocketpixelpets.MainActivity;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 
@@ -15,14 +12,16 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
 /**
+ * The Repository accesses data from anywhere.
  * @author Jessica Sandoval
  * @since 12/08/2025
  */
 public class Repository {
+    private static Repository repository;
     private PetDao petDao;
     private ArrayList<Pet> allPets;
 
-    public Repository(Application application) {
+    private Repository(Application application) {
         AppDatabase db = AppDatabase.getDatabase(application);
         this.petDao = db.PetDao();
         this.allPets = (ArrayList<Pet>) this.petDao.getAllPets();
@@ -49,5 +48,25 @@ public class Repository {
         AppDatabase.databaseWriteExecutor.execute(() -> {
             petDao.insertPet(pet);
         });
+    }
+
+    public static Repository getRepository(Application application) {
+        if(repository != null) {
+            return repository;
+        }
+        Future<Repository> future = AppDatabase.databaseWriteExecutor.submit(
+                new Callable<Repository>() {
+                    @Override
+                    public Repository call() throws Exception {
+                        return new Repository(application);
+                    }
+                }
+        );
+        try{
+            return future.get();
+        }catch (InterruptedException | ExecutionException e) {
+            Log.d(MainActivity.TAG, "Problem getting the virtual pet repository; thread error.");
+        }
+        return null;
     }
 }
