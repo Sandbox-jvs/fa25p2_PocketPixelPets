@@ -60,16 +60,17 @@ public class User {
         return created_at;
     }
 
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
+        return user_id == user.user_id && is_admin == user.is_admin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, password, created_at, username);
+        return Objects.hash(user_id, password, created_at, username, is_admin);
     }
 
     public void setUser_id(int user_id) {
@@ -100,12 +101,13 @@ public class User {
         return user_id;
     }
 
-    public boolean isIs_admin() {
+    public boolean isAdmin() {
         return is_admin;
     }
 
     public void setIs_admin(boolean is_admin) {
         this.is_admin = is_admin;
     }
+
 }
 
