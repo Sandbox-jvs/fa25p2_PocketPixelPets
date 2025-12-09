@@ -50,6 +50,12 @@ public class User {
         created_at = LocalDateTime.now();
     }
 
+    public User(String username, String password, boolean is_admin) {
+        this(username, password);
+
+        this.is_admin = is_admin;
+    }
+
     public LocalDateTime getCreated_at() {
         return created_at;
     }
