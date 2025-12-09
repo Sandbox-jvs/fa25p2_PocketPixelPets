@@ -1,7 +1,14 @@
+/**
+ * ChoosePetActivity.java | Activity for choosing a pet during user sign-up
+ * @author Emmanuel Garcia
+ * @since 12/8/25
+ */
+
 package com.talentengine.pocketpixelpets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -16,8 +23,10 @@ public class ChoosePetActivity extends AppCompatActivity {
     private SpriteView foxSpriteView;
     private MaterialButton continueButton;
 
-    // Store which pet is selected
     private String selectedPet = null;
+
+    private static final float DIMMED_ALPHA = 0.35f;
+    private static final float FULL_ALPHA = 1.0f;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,7 +46,6 @@ public class ChoosePetActivity extends AppCompatActivity {
                 R.drawable.turtle_sprite_sheet_green,
                 2, 3
         );
-//        // TODO: change fox sprite file name to match your actual PNG
         foxSpriteView.setSpriteSheet(
                 R.drawable.fox_sprite_sheet_pink,
                 2, 3
@@ -51,6 +59,11 @@ public class ChoosePetActivity extends AppCompatActivity {
         turtleSpriteView.start();
         foxSpriteView.start();
 
+        resetSpritesToDimmed();
+
+        continueButton.setEnabled(false);
+        continueButton.setAlpha(DIMMED_ALPHA);
+
         otterSpriteView.setOnClickListener(v -> onPetSelected("otter"));
         turtleSpriteView.setOnClickListener(v -> onPetSelected("turtle"));
         foxSpriteView.setOnClickListener(v -> onPetSelected("fox"));
@@ -58,61 +71,43 @@ public class ChoosePetActivity extends AppCompatActivity {
         continueButton.setOnClickListener(v -> onContinueClicked());
     }
 
+
     private void onPetSelected(String petId) {
         selectedPet = petId;
 
-        resetSpriteStates();
+        resetSpritesToDimmed();
 
+        // Set selected pet to full alpha
         switch (petId) {
             case "otter":
-                otterSpriteView.setScaleX(1.1f);
-                otterSpriteView.setScaleY(1.1f);
+                otterSpriteView.setAlpha(FULL_ALPHA);
                 break;
             case "turtle":
-                turtleSpriteView.setScaleX(1.1f);
-                turtleSpriteView.setScaleY(1.1f);
+                turtleSpriteView.setAlpha(FULL_ALPHA);
                 break;
             case "fox":
-                foxSpriteView.setScaleX(1.1f);
-                foxSpriteView.setScaleY(1.1f);
+                foxSpriteView.setAlpha(FULL_ALPHA);
                 break;
         }
+
+        continueButton.setEnabled(true);
+        continueButton.setAlpha(FULL_ALPHA);
     }
 
-    private void resetSpriteStates() {
-        SpriteView[] sprites = { otterSpriteView, turtleSpriteView, foxSpriteView };
-        for (SpriteView sprite : sprites) {
-            sprite.setScaleX(1.0f);
-            sprite.setScaleY(1.0f);
-        }
+    private void resetSpritesToDimmed() {
+        otterSpriteView.setAlpha(DIMMED_ALPHA);
+        turtleSpriteView.setAlpha(DIMMED_ALPHA);
+        foxSpriteView.setAlpha(DIMMED_ALPHA);
     }
-
     private void onContinueClicked() {
         if (selectedPet == null) {
             Toast.makeText(this, "Please choose a pet first!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Pass the chosen pet to MainActivity (or wherever you want to go)
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("selected_pet", selectedPet);
         startActivity(intent);
         finish();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        otterSpriteView.start();
-        turtleSpriteView.start();
-        foxSpriteView.start();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        otterSpriteView.stop();
-        turtleSpriteView.stop();
-        foxSpriteView.stop();
     }
 }
