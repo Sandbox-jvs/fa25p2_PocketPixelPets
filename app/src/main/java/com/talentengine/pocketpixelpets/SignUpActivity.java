@@ -33,7 +33,7 @@ public class SignUpActivity extends AppCompatActivity {
                 2,
                 3
         );
-        otterSpriteView.setFrameDuration(900);
+        otterSpriteView.setFrameDuration(1500);
 
         logoSpriteView = findViewById(R.id.logoSpriteView);
         logoSpriteView.setSpriteSheet(
