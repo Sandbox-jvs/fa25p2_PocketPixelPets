@@ -32,6 +32,14 @@ public class User {
     private String username;
 
     /**
+     * Boolean variable to declare if the user is an admin, default value is false.
+     * <br>
+     * An overloaded constructor is not available, so the user must be declared admin after
+     * creation.
+     */
+    private boolean is_admin = false;
+
+    /**
      * Given a username and password, generate a user. Automatically collect the current time
      * @param username The username of the user
      * @param password The password of the user
@@ -47,16 +55,17 @@ public class User {
         return created_at;
     }
 
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof User)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
+        return user_id == user.user_id && is_admin == user.is_admin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, password, created_at, username);
+        return Objects.hash(user_id, password, created_at, username, is_admin);
     }
 
     public void setUser_id(int user_id) {
@@ -86,5 +95,14 @@ public class User {
     public int getUser_id() {
         return user_id;
     }
+
+    public boolean isIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
+    }
+
 }
 
