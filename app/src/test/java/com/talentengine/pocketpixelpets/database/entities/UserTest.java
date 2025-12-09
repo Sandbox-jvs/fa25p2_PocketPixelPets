@@ -21,15 +21,17 @@ public class UserTest extends TestCase {
     User user1 = new User(username1, password1);
 
     /**
-     * This generated user was constructed with the admin argument, so is_admin should be true
+     * This generated user will be updated with setIs_admin
      */
-    User admin = new User(username1, password1, true);
+    User admin = new User(username1, password1);
 
 
-    @Test
+
     public void testIsAdmin() {
-        assertTrue(admin.isAdmin());
-        assertFalse(user1.isAdmin());
+        admin.setIs_admin(true);
+
+        assertTrue(admin.isIs_admin());
+        assertFalse(user1.isIs_admin());
         assertNotEquals(user1, admin);
     }
 }

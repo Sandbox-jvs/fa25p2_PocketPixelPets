@@ -34,7 +34,8 @@ public class User {
     /**
      * Boolean variable to declare if the user is an admin, default value is false.
      * <br>
-     * The value can be updated by using the related setter, or by using the overloaded constructor
+     * An overloaded constructor is not available, so the user must be declared admin after
+     * creation.
      */
     private boolean is_admin = false;
 
@@ -48,12 +49,6 @@ public class User {
         this.password = password;
 
         created_at = LocalDateTime.now();
-    }
-
-    public User(String username, String password, boolean is_admin) {
-        this(username, password);
-
-        this.is_admin = is_admin;
     }
 
     public LocalDateTime getCreated_at() {
@@ -101,7 +96,7 @@ public class User {
         return user_id;
     }
 
-    public boolean isAdmin() {
+    public boolean isIs_admin() {
         return is_admin;
     }
 
