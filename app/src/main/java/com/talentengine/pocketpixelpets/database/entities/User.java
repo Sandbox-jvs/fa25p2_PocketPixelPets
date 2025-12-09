@@ -32,6 +32,13 @@ public class User {
     private String username;
 
     /**
+     * Boolean variable to declare if the user is an admin, default value is false.
+     * <br>
+     * The value can be updated by using the related setter, or by using the overloaded constructor
+     */
+    private boolean is_admin = false;
+
+    /**
      * Given a username and password, generate a user. Automatically collect the current time
      * @param username The username of the user
      * @param password The password of the user
@@ -85,6 +92,14 @@ public class User {
 
     public int getUser_id() {
         return user_id;
+    }
+
+    public boolean isIs_admin() {
+        return is_admin;
+    }
+
+    public void setIs_admin(boolean is_admin) {
+        this.is_admin = is_admin;
     }
 }
 
