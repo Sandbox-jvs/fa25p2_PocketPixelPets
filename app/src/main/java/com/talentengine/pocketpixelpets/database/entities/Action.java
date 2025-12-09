@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 
 @Entity(tableName = "actions")
 public class Action {
+
+
     @PrimaryKey(autoGenerate = true)
     private int action_id;
 
@@ -45,6 +47,9 @@ public class Action {
         created_at = LocalDateTime.now();
     }
 
+    public void setAction_id(int action_id) {
+        this.action_id = action_id;
+    }
     public int getAction_id() {
         return action_id;
     }
@@ -55,6 +60,10 @@ public class Action {
 
     public LocalDateTime getCreated_at() {
         return created_at;
+    }
+
+    public void setCreated_at(LocalDateTime created_at) {
+        this.created_at = created_at;
     }
 
     public int getPet_id() {

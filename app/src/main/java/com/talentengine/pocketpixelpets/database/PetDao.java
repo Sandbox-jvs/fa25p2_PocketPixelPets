@@ -18,7 +18,7 @@ import java.util.List;
 public interface PetDao {
     // Insert a Pet
     @Insert
-    public int insertPet(Pet pet);
+    public void insertPet(Pet pet);
 
     // Get a pet given the Pet ID
     @Query("SELECT * FROM pets WHERE pet_id = :petId LIMIT 1")

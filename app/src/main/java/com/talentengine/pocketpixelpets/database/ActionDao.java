@@ -18,7 +18,7 @@ import java.util.List;
 public interface ActionDao {
     // Insert an action TODO: Replace 'actions' with a static variable
     @Insert
-    int insertAction(Action action);
+    void insertAction(Action action);
 
     // Get all actions TODO: Replace 'actions' with a static variable
     @Query("SELECT * FROM actions")

@@ -2,6 +2,7 @@ package com.talentengine.pocketpixelpets;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.material.transition.MaterialFade;
 
@@ -11,9 +12,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 
 import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.Repository;
 
 public class MainActivity extends AppCompatActivity {
     AppDatabase database;
+    private Repository repository;
     public static final String TAG = "TE_VIRTUALPET";
     private SpriteView otterSpriteView;
     private SpriteView logoSpriteView;
@@ -22,7 +25,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //check database is functioning; DATABASE CREATED! appears only on first-time db creation
+        Log.d(TAG, "MainActivity onCreate called");
+
         database = AppDatabase.getDatabase(this);
+        //database.getOpenHelper().getWritableDatabase();
+        repository = Repository.getRepository(getApplication());
+
 
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
