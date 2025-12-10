@@ -7,6 +7,7 @@
 package com.talentengine.pocketpixelpets.database.entities;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
@@ -39,11 +40,14 @@ public class User {
      */
     private boolean is_admin = false;
 
+    public User(){}
+
     /**
-     * Given a username and password, generate a user. Automatically collect the current time
+     * Given a username and password, generate a user. Automatically collect the current time.
      * @param username The username of the user
      * @param password The password of the user
      */
+    @Ignore
     public User(String username, String password) {
         this.username = username;
         this.password = password;
