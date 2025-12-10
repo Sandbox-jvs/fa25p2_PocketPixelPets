@@ -7,7 +7,6 @@
 package com.talentengine.pocketpixelpets.database;
 
 import androidx.room.Dao;
-import androidx.room.Delete;
 import androidx.room.Insert;
 import androidx.room.Query;
 
@@ -19,7 +18,7 @@ import java.util.List;
 public interface UserDao {
     // Insert data into the table
     @Insert
-    int insertUser(User user);
+    void insertUser(User user);
 
     // Retrieve a user given the username
     //TODO: Change 'users' to be a static variable from the database
@@ -32,4 +31,6 @@ public interface UserDao {
     List<User> getAllUsers();
 
     // TODO: Delete user
+    @Query("DELETE FROM users")
+    void deleteAll();
 }
