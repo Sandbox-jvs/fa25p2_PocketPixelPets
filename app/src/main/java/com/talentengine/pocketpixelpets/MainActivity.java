@@ -1,5 +1,6 @@
 package com.talentengine.pocketpixelpets;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.google.android.material.transition.MaterialFade;
 
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -98,13 +100,51 @@ public class MainActivity extends AppCompatActivity {
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                // TODO: Remove this toast
-                Toast.makeText(MainActivity.this, "LOGOUT WIP", Toast.LENGTH_SHORT).show();
-                // TODO: Start the activity
+                // TODO: Logout Alert Dialog
+                showLogoutDialog();
                 return false;
             }
         });
         return true;
+    }
+
+    /**
+     * Asks the user if they really want to log out. If so, they will be removed to login screen
+     */
+    private void showLogoutDialog() {
+        // TODO: Update MainActivity to reflect the current activity
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+
+        /*
+         * Display a menu as:
+         * | - - - - - - - - - - - - - - - |
+         * | Do you really want to logout? |
+         * |        Logout | Cancel        |
+         * | - - - - - - - - - - - - - - - |
+         */
+        alertBuilder.setTitle("Do you really want to logout?");
+        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                logout();
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertBuilder.create().show();
+    }
+
+    private void logout() {
+        // TODO: Finish logout method
+        // TODO: Start the activity
+        Toast.makeText(this, "LOGGED OUT!", Toast.LENGTH_SHORT).show();
     }
     // ^^^ ^^^ ^^^ LOGOUT MENU IMPLEMENTATION ^^^ ^^^ ^^^
 }

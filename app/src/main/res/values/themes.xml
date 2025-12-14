@@ -8,8 +8,7 @@
         <!-- Background color of the action bar -->
         <item name="colorPrimary">#A5D6C4</item>
 
-        <!-- Text color of action bar -->
-        <item name="android:textColorPrimary">@color/bar_title_color</item>
+
 
     </style>
 
