@@ -39,9 +39,6 @@ public class MainActivity extends AppCompatActivity {
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
 
-        // LOGOUT MENU IMPLEMENTATION - Force update the menu
-        invalidateOptionsMenu();
-
         MaterialButton signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, SignUpActivity.class);
@@ -80,72 +77,4 @@ public class MainActivity extends AppCompatActivity {
         if (otterSpriteView != null) otterSpriteView.stop();
         if (logoSpriteView != null) logoSpriteView.stop();
     }
-
-    // vvv vvv vvv LOGOUT MENU IMPLEMENTATION vvv vvv vvv
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.logout_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.logoutMenuItem);
-        item.setVisible(true);
-
-        // TODO: UPDATE THE TITLE TO REFLECT THE USERNAME OF THE CURRENT USER
-        item.setTitle("TEST");      // Set the username
-
-        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                // TODO: Logout Alert Dialog
-                showLogoutDialog();
-                return false;
-            }
-        });
-        return true;
-    }
-
-    /**
-     * Asks the user if they really want to log out. If so, they will be removed to login screen
-     */
-    private void showLogoutDialog() {
-        // TODO: Update MainActivity to reflect the current activity
-        // TODO: Move the logout functionality to the Choose Pet activity
-        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
-        final AlertDialog alertDialog = alertBuilder.create();
-
-        /*
-         * Display a menu as:
-         * | - - - - - - - - - - - - - - - |
-         * | Do you really want to logout? |
-         * |        Logout | Cancel        |
-         * | - - - - - - - - - - - - - - - |
-         */
-        alertBuilder.setTitle("Do you really want to logout?");
-        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                logout();
-            }
-        });
-
-        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                alertDialog.dismiss();
-            }
-        });
-
-        alertBuilder.create().show();
-    }
-
-    private void logout() {
-        // TODO: Finish logout method
-        // TODO: Start the activity
-        Toast.makeText(this, "LOGGED OUT!", Toast.LENGTH_SHORT).show();
-    }
-    // ^^^ ^^^ ^^^ LOGOUT MENU IMPLEMENTATION ^^^ ^^^ ^^^
 }
