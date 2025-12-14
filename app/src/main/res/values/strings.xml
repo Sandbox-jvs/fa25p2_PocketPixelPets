@@ -7,4 +7,9 @@
     <string name="next">Next</string>
     <string name="choose_your_pet">Choose Your Pet</string>
     <string name="choose_a_background">Choose a Background</string>
+    <string name="choose_a_personality">Choose a personality</string>
+    <string name="this_will_change_how_your_pet_behaves">This will change how your pet behaves!</string>
+    <string name="pocket_pixel_pet">Pocket Pixel Pet</string>
+    <string name="cheerful">Cheerful</string>
+    <string name="stays_happy_for_longer">Stays happy for longer</string>
 </resources>
