@@ -122,6 +122,9 @@ public class ChoosePetActivity extends AppCompatActivity {
 
 
     // vvv vvv vvv LOGOUT MENU IMPLEMENTATION vvv vvv vvv
+    // When copying the menu implementation, you must also include the following line in OnCreate:
+        // LOGOUT MENU IMPLEMENTATION - Force update the menu
+    //  invalidateOptionsMenu();
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -134,13 +137,15 @@ public class ChoosePetActivity extends AppCompatActivity {
         MenuItem item = menu.findItem(R.id.logoutMenuItem);
         item.setVisible(true);
 
-        // TODO: UPDATE THE TITLE TO REFLECT THE USERNAME OF THE CURRENT USER
+        // Retrieve the username from the previous activity (login or signup)
+        Intent loginIntent = new Intent(ChoosePetActivity.this, MainActivity.class);
+        loginIntent.getStringExtra("USERNAME");
+
         item.setTitle("TEST");      // Set the username
 
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                // TODO: Logout Alert Dialog
                 showLogoutDialog();
                 return false;
             }
@@ -152,8 +157,6 @@ public class ChoosePetActivity extends AppCompatActivity {
      * Asks the user if they really want to log out. If so, they will be removed to login screen
      */
     private void showLogoutDialog() {
-        // TODO: Update MainActivity to reflect the current activity
-        // TODO: Move the logout functionality to the Choose Pet activity
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChoosePetActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
@@ -184,8 +187,8 @@ public class ChoosePetActivity extends AppCompatActivity {
 
     private void logout() {
         // TODO: Finish logout method
-        // TODO: Start the activity
-        Toast.makeText(this, "LOGGED OUT!", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(ChoosePetActivity.this, MainActivity.class);
+        startActivity(intent);
     }
     // ^^^ ^^^ ^^^ LOGOUT MENU IMPLEMENTATION ^^^ ^^^ ^^^
 }
