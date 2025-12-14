@@ -1,19 +1,12 @@
 package com.talentengine.pocketpixelpets;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.google.android.material.transition.MaterialFade;
 
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -38,6 +31,14 @@ public class MainActivity extends AppCompatActivity {
         database = AppDatabase.getDatabase(this);
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
+
+        MaterialButton loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(v -> {
