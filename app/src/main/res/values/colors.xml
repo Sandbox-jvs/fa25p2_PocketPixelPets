@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--Navigation Bar Colors-->
+    <color name="bar_background_color">#A7D8FF</color>
+    <color name="bar_title_color">#2988ED</color>
+    <color name="bar_username_color">#2988ED</color>
 </resources>

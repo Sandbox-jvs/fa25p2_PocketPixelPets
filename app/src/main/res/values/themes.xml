@@ -4,6 +4,13 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowActivityTransitions">true</item>
+
+        <!-- Background color of the action bar -->
+        <item name="colorPrimary">@color/bar_background_color</item>
+
+        <!-- Text color of action bar -->
+        <item name="android:textColorPrimary">@color/bar_title_color</item>
+
     </style>
 
     <style name="Theme.PocketPixelPets" parent="Base.Theme.PocketPixelPets" />
