@@ -82,8 +82,51 @@
                 android:textSize="14sp" />
         </LinearLayout>
 
-
-
     </com.google.android.material.card.MaterialCardView>
+
+    <!-- Lazy card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/lazyButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cheerfulButton"
+        app:layout_constraintTop_toBottomOf="@id/personalitySubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Lazy card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/lazyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/lazy"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+            <TextView
+                android:id="@+id/lazySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="@string/gets_hungry_more_slowly"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

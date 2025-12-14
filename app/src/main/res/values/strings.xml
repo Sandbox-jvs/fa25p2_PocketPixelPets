@@ -12,4 +12,6 @@
     <string name="pocket_pixel_pet">Pocket Pixel Pet</string>
     <string name="cheerful">Cheerful</string>
     <string name="stays_happy_for_longer">Stays happy for longer</string>
+    <string name="lazy">Lazy</string>
+    <string name="gets_hungry_more_slowly">Gets hungry more slowly.</string>
 </resources>
