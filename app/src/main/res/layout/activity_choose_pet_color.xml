@@ -8,6 +8,40 @@
     android:background="@color/appBackgroundColor"
     tools:context=".ChoosePetColorActivity">
 
+    <TextView
+        android:id="@+id/choosePetColorTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+
+        android:gravity="center"
+        android:text="@string/choose_your_pets_color"
+
+        android:fontFamily="@font/nokiafc22"
+        android:textColor="#6CA893"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toTopOf="@id/petSpritePreview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="100dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.talentengine.pocketpixelpets.SpriteView
+        android:id="@+id/petSpritePreview"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:alpha="0.35"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@id/pickAColorTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
@@ -23,8 +57,22 @@
         app:layout_constraintBottom_toBottomOf="parent"
         />
 
+    <TextView
+        android:id="@+id/pickAColorTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
 
+        android:fontFamily="@font/nokiafc22"
+        android:textColor="#6CA893"
+        android:textSize="18sp"
 
+        android:layout_marginTop="12dp"
+        android:text="@string/pick_a_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/petSpritePreview"
+        tools:layout_editor_absoluteY="302dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
