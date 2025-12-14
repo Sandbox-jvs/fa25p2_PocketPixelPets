@@ -138,10 +138,12 @@ public class ChoosePetActivity extends AppCompatActivity {
         item.setVisible(true);
 
         // Retrieve the username from the previous activity (login or signup)
-        Intent loginIntent = new Intent(ChoosePetActivity.this, MainActivity.class);
-        loginIntent.getStringExtra("USERNAME");
+        Intent loginIntent = getIntent();
+        String username = loginIntent.getStringExtra("USERNAME");
+        Toast.makeText(this, ("the username is: " + username), Toast.LENGTH_SHORT).show();
 
-        item.setTitle("TEST");      // Set the username
+        // Use the collected username and set the Menu bar title to it
+        item.setTitle(username);
 
         item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
