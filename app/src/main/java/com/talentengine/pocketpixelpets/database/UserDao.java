@@ -18,7 +18,7 @@ import java.util.List;
 public interface UserDao {
     // Insert data into the table
     @Insert
-    void insertUser(User user);
+    long insertUser(User user);
 
     // Retrieve a user given the username
     //TODO: Change 'users' to be a static variable from the database

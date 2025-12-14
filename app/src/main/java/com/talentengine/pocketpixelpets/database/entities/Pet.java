@@ -25,12 +25,8 @@ public class Pet {
     private String background;
     private LocalDateTime created_at;
 
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public Pet() {
+        this.created_at = LocalDateTime.now();
     }
 
     public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
@@ -41,6 +37,14 @@ public class Pet {
         this.favorite_food = favorite_food;
         this.background = background;
         created_at = LocalDateTime.now();
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     @Override

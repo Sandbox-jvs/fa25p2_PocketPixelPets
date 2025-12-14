@@ -18,7 +18,7 @@ import java.util.List;
 public interface PetDao {
     // Insert a Pet
     @Insert
-    public void insertPet(Pet pet);
+    public long insertPet(Pet pet);
 
     // Get a pet given the Pet ID
     @Query("SELECT * FROM pets WHERE pet_id = :petId LIMIT 1")
@@ -32,6 +32,8 @@ public interface PetDao {
     @Query("SELECT * FROM pets WHERE user_id = :ownerUserId")
     public Pet getPetFromOwnerUserId(int ownerUserId);
 
-    // TODO: remove pet
+    @Query("DELETE FROM pets")
+    void deleteAll();
+
     // TODO: REPLACE ALL 'pets' WITH A STATIC VARIABLE
 }
