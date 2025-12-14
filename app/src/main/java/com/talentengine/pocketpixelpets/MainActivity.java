@@ -3,6 +3,9 @@ package com.talentengine.pocketpixelpets;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import com.google.android.material.transition.MaterialFade;
 
@@ -32,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
 
-
+        // Force update the menu
+        invalidateOptionsMenu();
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(v -> {
@@ -71,5 +75,23 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         if (otterSpriteView != null) otterSpriteView.stop();
         if (logoSpriteView != null) logoSpriteView.stop();
+    }
+
+    // Override method for the Logout Banner - Inflate the menu
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout_menu, menu);
+        return true;
+    }
+
+    // Override method for Logout Banner - Get references to the menu item
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.logoutMenuItem);
+        item.setVisible(true);
+        // TODO: UPDATE THE TITLE TO REFLECT THE USERNAME OF THE CURRENT USER
+        item.setTitle("TEST");
+        return true;
     }
 }
