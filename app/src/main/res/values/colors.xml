@@ -7,4 +7,5 @@
     <color name="bar_background_color">#A7D8FF</color>
     <color name="bar_title_color">#2988ED</color>
     <color name="bar_username_color">#2988ED</color>
+    <color name="action_color">#A5D6C4</color>
 </resources>
