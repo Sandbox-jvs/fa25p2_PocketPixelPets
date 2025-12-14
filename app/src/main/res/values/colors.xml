@@ -9,5 +9,10 @@
     <color name="bar_username_color">#2988ED</color>
     <color name="action_color">#A5D6C4</color>
 
-    <color name="app_background_color">#E9FFF6</color>
+    <!-- App Interface Colors -->
+    <color name="appBackgroundColor">#E9FFF6</color>
+    <color name="buttonBackgroundColor">#6CA893</color>
+    <color name="buttonTextColor">#E9FFF6</color>
+
+
 </resources>
