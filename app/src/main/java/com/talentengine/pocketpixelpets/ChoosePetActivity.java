@@ -123,8 +123,7 @@ public class ChoosePetActivity extends AppCompatActivity {
 
     // vvv vvv vvv LOGOUT MENU IMPLEMENTATION vvv vvv vvv
     // When copying the menu implementation, you must also include the following line in OnCreate:
-        // LOGOUT MENU IMPLEMENTATION - Force update the menu
-    //  invalidateOptionsMenu();
+    // invalidateOptionsMenu(); // Force update the menu
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
