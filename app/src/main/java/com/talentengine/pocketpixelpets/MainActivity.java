@@ -6,10 +6,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.transition.MaterialFade;
 
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -35,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
 
-        // Force update the menu
+        // LOGOUT MENU IMPLEMENTATION - Force update the menu
         invalidateOptionsMenu();
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
         if (logoSpriteView != null) logoSpriteView.stop();
     }
 
-    // Override method for the Logout Banner - Inflate the menu
+    // vvv vvv vvv LOGOUT MENU IMPLEMENTATION vvv vvv vvv
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -85,13 +87,24 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
-    // Override method for Logout Banner - Get references to the menu item
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.logoutMenuItem);
         item.setVisible(true);
+
         // TODO: UPDATE THE TITLE TO REFLECT THE USERNAME OF THE CURRENT USER
-        item.setTitle("TEST");
+        item.setTitle("TEST");      // Set the username
+
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                // TODO: Remove this toast
+                Toast.makeText(MainActivity.this, "LOGOUT WIP", Toast.LENGTH_SHORT).show();
+                // TODO: Start the activity
+                return false;
+            }
+        });
         return true;
     }
+    // ^^^ ^^^ ^^^ LOGOUT MENU IMPLEMENTATION ^^^ ^^^ ^^^
 }
