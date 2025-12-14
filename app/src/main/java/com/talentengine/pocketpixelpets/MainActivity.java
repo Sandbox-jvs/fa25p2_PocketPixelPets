@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void showLogoutDialog() {
         // TODO: Update MainActivity to reflect the current activity
+        // TODO: Move the logout functionality to the Choose Pet activity
         AlertDialog.Builder alertBuilder = new AlertDialog.Builder(MainActivity.this);
         final AlertDialog alertDialog = alertBuilder.create();
 
