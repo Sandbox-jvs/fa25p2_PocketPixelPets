@@ -20,6 +20,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
+ * Creates a Room Database for the application. Class implements a singleton pattern through a static method
+ * getDatabase(), which ensures that only one database is created for the entire application.
+ *
+ * The Database annotation defines which classes are stored as tables in the Room database. Room
+ * generates tables for each entity class.
  * @author Jessica Sandoval
  * @since 12/07/2025
  */

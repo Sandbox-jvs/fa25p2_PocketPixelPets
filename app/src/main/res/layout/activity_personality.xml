@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Author: Jessica Sandoval -->
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9FFF6">
+
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/choosePersonalityTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="@string/choose_a_personality"
+        android:textColor="@color/action_color"
+        android:textSize="22sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/personalitySubtitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="@string/this_will_change_how_your_pet_behaves"
+        android:textColor="@color/action_color"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/choosePersonalityTextView" />
+
+    <!-- Cheerful card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cheerfulButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/personalitySubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside the Cheerful card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/cheerfulTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/cheerful"
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/cheerfulSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="@string/stays_happy_for_longer"
+                android:textColor="@color/action_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Lazy card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/lazyButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cheerfulButton"
+        app:layout_constraintTop_toBottomOf="@id/personalitySubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Lazy card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <TextView
+                android:id="@+id/lazyTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/lazy"
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/lazySubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="@string/gets_hungry_more_slowly"
+                android:textColor="@color/action_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Playful card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/playfulButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/cheerfulButton"
+        app:layout_constraintTop_toBottomOf="@id/cheerfulButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Playful card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+            <!-- Playful card title -->
+            <TextView
+                android:id="@+id/playfulTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/playful"
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <!-- Playful card subtext -->
+            <TextView
+                android:id="@+id/playfulSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="@string/playing_boosts_happiness_more"
+                android:textColor="@color/action_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Clean Freak card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cleanFreakButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/lazyButton"
+        app:layout_constraintTop_toBottomOf="@id/cheerfulButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Clean Freak card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+            <!-- Clean Freak card title -->
+            <TextView
+                android:id="@+id/cleanFreakTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Clean Freak"
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <!-- Clean Freak card subtext -->
+            <TextView
+                android:id="@+id/cleanFreakSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="Stays clean for longer."
+                android:textColor="@color/action_color"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:text="Next"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cheerfulButton" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
