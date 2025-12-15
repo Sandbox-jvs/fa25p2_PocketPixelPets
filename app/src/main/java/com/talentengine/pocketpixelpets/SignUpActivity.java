@@ -1,15 +1,26 @@
 package com.talentengine.pocketpixelpets;
 
+import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.widget.ImageView;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputEditText;
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.User;
 
 public class SignUpActivity extends AppCompatActivity {
+
+    private TextInputEditText usernameInput;
+    private TextInputEditText passwordInput;
+    private MaterialButton signupButton;
+    private User user = null;
+
+    private AppDatabase database;
 
     private SpriteView otterSpriteView;
     private SpriteView logoSpriteView;
@@ -19,12 +30,23 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        MaterialButton signupButton = findViewById(R.id.signupButton);
-        signupButton.setOnClickListener(v -> {
-            Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
-            startActivity(intent);
+        database = AppDatabase.getDatabase(this);
 
-            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        usernameInput = findViewById(R.id.usernameInput);
+        passwordInput = findViewById(R.id.passwordInput);
+        signupButton  = findViewById(R.id.signupButton);
+
+        signupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (verifyUser()) {
+                    toastMaker("User created successfully!");
+                    Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            }
         });
 
         otterSpriteView = findViewById(R.id.otterSpriteView);
@@ -42,6 +64,34 @@ public class SignUpActivity extends AppCompatActivity {
                 3
         );
         logoSpriteView.setFrameDuration(1000);
+    }
+
+    private boolean verifyUser() {
+        String username = usernameInput.getText().toString();
+        String password = passwordInput.getText().toString();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            toastMaker("Username and password cannot be blank");
+            return false;
+        }
+        user = database.userDao().getUserByUsername(username);
+        if (user != null) {
+            toastMaker("Username already exists");
+            return false;
+        }
+
+        User newUser = new User(username, password);
+        database.userDao().insertUser(newUser);
+
+        return true;
+    }
+
+    private void toastMaker(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    static Intent signUpIntentFactory(Context context) {
+        return new Intent(context, SignUpActivity.class);
     }
 
     @Override
