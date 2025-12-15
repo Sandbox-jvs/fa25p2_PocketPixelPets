@@ -170,6 +170,47 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
+    <!-- Clean Freak card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cleanFreakButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/lazyButton"
+        app:layout_constraintTop_toBottomOf="@id/cheerfulButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
 
+        <!-- Content inside Clean Freak card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+            <!-- Clean Freak card title -->
+            <TextView
+                android:id="@+id/cleanFreakTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Clean Freak"
+                android:textStyle="bold"
+                android:textSize="20sp"/>
+            <!-- Clean Freak card subtext -->
+            <TextView
+                android:id="@+id/cleanFreakSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="4dp"
+                android:text="Stays clean for longer."
+                android:textSize="14sp" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
