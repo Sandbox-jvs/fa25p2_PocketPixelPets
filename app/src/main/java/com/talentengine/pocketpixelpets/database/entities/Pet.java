@@ -23,6 +23,7 @@ public class Pet {
     private String pet_personality;
     private String favorite_food;
     private String background;
+    private String pet_toy;
     private LocalDateTime created_at;
 
     public Pet() {
@@ -141,6 +142,14 @@ public class Pet {
 
     public LocalDateTime getCreated_at() {
         return created_at;
+    }
+
+    public String getPet_toy() {
+        return pet_toy;
+    }
+
+    public void setPet_toy(String pet_toy) {
+        this.pet_toy = pet_toy;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
