@@ -14,4 +14,6 @@
     <string name="stays_happy_for_longer">Stays happy for longer</string>
     <string name="lazy">Lazy</string>
     <string name="gets_hungry_more_slowly">Gets hungry more slowly.</string>
+    <string name="playful">Playful</string>
+    <string name="playing_boosts_happiness_more">Playing boosts happiness more.</string>
 </resources>
