@@ -5,12 +5,32 @@
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="android:windowActivityTransitions">true</item>
 
-        <!-- Background color of the action bar -->
-        <item name="colorPrimary">#A5D6C4</item>
+        <!-- Set a custom theme for the action bar -->
+        <item name="actionBarStyle">@style/Widget.PocketPixelPets.ActionBar</item>
 
-
-
+        <!-- Set custom text color for the action bar -->
+        <item name="actionBarTheme">@style/ThemeOverlay.PocketPixelPets.ActionBar</item>
     </style>
+
+    <!-- Customize the Action Bar Text -->
+    <style name="ThemeOverlay.PocketPixelPets.ActionBar"
+        parent="ThemeOverlay.MaterialComponents.Dark.ActionBar">
+        <item name="android:textColorPrimary">#6CA893</item>
+        <item name="actionMenuTextColor">#6CA893</item>
+
+        <!-- Text Shadow -->
+        <item name="android:shadowColor">#26243A32</item>
+        <item name="android:shadowDx">5</item>
+        <item name="android:shadowDy">5</item>
+        <item name="android:shadowRadius">2</item>
+    </style>
+
+    <!-- Remove drop shadow and change background color of action bar -->
+    <style name="Widget.PocketPixelPets.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
+        <item name="background">@color/app_background_color</item>
+        <item name="elevation">0dp</item>
+    </style>
+
 
     <style name="Theme.PocketPixelPets" parent="Base.Theme.PocketPixelPets" />
 
