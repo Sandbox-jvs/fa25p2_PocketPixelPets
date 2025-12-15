@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  * @since 12/07/2025
  */
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {Pet.class, Action.class, User.class}, version = 3, exportSchema = false)
+@Database(entities = {Pet.class, Action.class, User.class}, version = 5, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "pixelPets_database";
     //Volatile data will only ever live in RAM and ensure thread visibility; this is where the singleton lives
@@ -76,10 +76,31 @@ public abstract class AppDatabase extends RoomDatabase {
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
             Log.i(MainActivity.TAG, "DATABASE CREATED!");
+            databaseWriteExecutor.execute(() -> {
+                UserDao userDao = INSTANCE.userDao();
+                PetDao petDao = INSTANCE.PetDao();
+
+                userDao.deleteAll();
+                petDao.deleteAll();
+
+
+                User admin = new User("admin1", "admin1");
+                admin.setIs_admin(true);
+                userDao.insertUser(admin);
+
+                User testUser1 = new User("testuser1","testuser1");
+                long testUserId = userDao.insertUser(testUser1);
+
+                Pet testPet = new Pet();
+                testPet.setUser_id((int) testUserId);
+
+                petDao.insertPet(testPet);
+            });
         }
     };
 
 
     public abstract PetDao PetDao();
     public abstract ActionDao actionDao();
+    public abstract UserDao userDao();
 }

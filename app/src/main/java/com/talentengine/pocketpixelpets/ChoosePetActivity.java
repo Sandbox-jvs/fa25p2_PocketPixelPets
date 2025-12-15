@@ -1,10 +1,23 @@
+/**
+ * ChoosePetActivity.java | Activity for choosing a pet during user sign-up
+ * @author Emmanuel Garcia
+ * @since 12/8/25
+ */
+
 package com.talentengine.pocketpixelpets;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
@@ -16,8 +29,10 @@ public class ChoosePetActivity extends AppCompatActivity {
     private SpriteView foxSpriteView;
     private MaterialButton continueButton;
 
-    // Store which pet is selected
     private String selectedPet = null;
+
+    private static final float DIMMED_ALPHA = 0.35f;
+    private static final float FULL_ALPHA = 1.0f;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -29,6 +44,9 @@ public class ChoosePetActivity extends AppCompatActivity {
         foxSpriteView = findViewById(R.id.foxSpriteView);
         continueButton = findViewById(R.id.loginButton);
 
+        // LOGOUT MENU IMPLEMENTATION - Force update the menu
+        invalidateOptionsMenu();
+
         otterSpriteView.setSpriteSheet(
                 R.drawable.otter_sprite_sheet_purple,
                 2, 3
@@ -37,7 +55,6 @@ public class ChoosePetActivity extends AppCompatActivity {
                 R.drawable.turtle_sprite_sheet_green,
                 2, 3
         );
-//        // TODO: change fox sprite file name to match your actual PNG
         foxSpriteView.setSpriteSheet(
                 R.drawable.fox_sprite_sheet_pink,
                 2, 3
@@ -51,6 +68,11 @@ public class ChoosePetActivity extends AppCompatActivity {
         turtleSpriteView.start();
         foxSpriteView.start();
 
+        resetSpritesToDimmed();
+
+        continueButton.setEnabled(false);
+        continueButton.setAlpha(DIMMED_ALPHA);
+
         otterSpriteView.setOnClickListener(v -> onPetSelected("otter"));
         turtleSpriteView.setOnClickListener(v -> onPetSelected("turtle"));
         foxSpriteView.setOnClickListener(v -> onPetSelected("fox"));
@@ -58,61 +80,115 @@ public class ChoosePetActivity extends AppCompatActivity {
         continueButton.setOnClickListener(v -> onContinueClicked());
     }
 
+
     private void onPetSelected(String petId) {
         selectedPet = petId;
 
-        resetSpriteStates();
+        resetSpritesToDimmed();
 
+        // Set selected pet to full alpha
         switch (petId) {
             case "otter":
-                otterSpriteView.setScaleX(1.1f);
-                otterSpriteView.setScaleY(1.1f);
+                otterSpriteView.setAlpha(FULL_ALPHA);
                 break;
             case "turtle":
-                turtleSpriteView.setScaleX(1.1f);
-                turtleSpriteView.setScaleY(1.1f);
+                turtleSpriteView.setAlpha(FULL_ALPHA);
                 break;
             case "fox":
-                foxSpriteView.setScaleX(1.1f);
-                foxSpriteView.setScaleY(1.1f);
+                foxSpriteView.setAlpha(FULL_ALPHA);
                 break;
         }
+
+        continueButton.setEnabled(true);
+        continueButton.setAlpha(FULL_ALPHA);
     }
 
-    private void resetSpriteStates() {
-        SpriteView[] sprites = { otterSpriteView, turtleSpriteView, foxSpriteView };
-        for (SpriteView sprite : sprites) {
-            sprite.setScaleX(1.0f);
-            sprite.setScaleY(1.0f);
-        }
+    private void resetSpritesToDimmed() {
+        otterSpriteView.setAlpha(DIMMED_ALPHA);
+        turtleSpriteView.setAlpha(DIMMED_ALPHA);
+        foxSpriteView.setAlpha(DIMMED_ALPHA);
     }
-
     private void onContinueClicked() {
         if (selectedPet == null) {
             Toast.makeText(this, "Please choose a pet first!", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Pass the chosen pet to MainActivity (or wherever you want to go)
         Intent intent = new Intent(this, MainActivity.class);
         intent.putExtra("selected_pet", selectedPet);
         startActivity(intent);
         finish();
     }
 
+
+    // vvv vvv vvv LOGOUT MENU IMPLEMENTATION vvv vvv vvv
+    // When copying the menu implementation, you must also include the following line in OnCreate:
+    // invalidateOptionsMenu(); // Force update the menu
     @Override
-    protected void onResume() {
-        super.onResume();
-        otterSpriteView.start();
-        turtleSpriteView.start();
-        foxSpriteView.start();
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.logout_menu, menu);
+        return true;
     }
 
     @Override
-    protected void onPause() {
-        super.onPause();
-        otterSpriteView.stop();
-        turtleSpriteView.stop();
-        foxSpriteView.stop();
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.logoutMenuItem);
+        item.setVisible(true);
+
+        // Retrieve the username from the previous activity (login or signup)
+        Intent loginIntent = getIntent();
+        String username = loginIntent.getStringExtra("USERNAME");
+
+        // Use the collected username and set the Menu bar title to it
+        item.setTitle(username);
+
+        item.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                showLogoutDialog();
+                return false;
+            }
+        });
+        return true;
     }
+
+    /**
+     * Asks the user if they really want to log out. If so, they will be removed to login screen
+     */
+    private void showLogoutDialog() {
+        AlertDialog.Builder alertBuilder = new AlertDialog.Builder(ChoosePetActivity.this);
+        final AlertDialog alertDialog = alertBuilder.create();
+
+        /*
+         * Display a menu as:
+         * | - - - - - - - - - - - - - - - |
+         * | Do you really want to logout? |
+         * |        Logout | Cancel        |
+         * | - - - - - - - - - - - - - - - |
+         */
+        alertBuilder.setTitle("Do you really want to logout?");
+        alertBuilder.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                logout();
+            }
+        });
+
+        alertBuilder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+
+        alertBuilder.create().show();
+    }
+
+    private void logout() {
+        // TODO: Finish logout method
+        Intent intent = new Intent(ChoosePetActivity.this, MainActivity.class);
+        startActivity(intent);
+    }
+    // ^^^ ^^^ ^^^ LOGOUT MENU IMPLEMENTATION ^^^ ^^^ ^^^
 }

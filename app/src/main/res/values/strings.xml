@@ -1,9 +1,10 @@
 <resources>
-    <string name="app_name">PocketPixelPets</string>
+    <string name="app_name">Pocket Pixel Pet</string>
     <string name="sign_up">Sign Up</string>
     <string name="log_in">Log In</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="next">Next</string>
     <string name="choose_your_pet">Choose Your Pet</string>
+    <string name="choose_a_background">Choose a Background</string>
 </resources>

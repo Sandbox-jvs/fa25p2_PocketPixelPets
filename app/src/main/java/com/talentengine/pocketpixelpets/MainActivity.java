@@ -32,7 +32,13 @@ public class MainActivity extends AppCompatActivity {
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
 
+        MaterialButton loginButton = findViewById(R.id.loginButton);
+        loginButton.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
 
+            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
 
         MaterialButton signupButton = findViewById(R.id.signupButton);
         signupButton.setOnClickListener(v -> {
@@ -48,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 2,
                 3
         );
-        otterSpriteView.setFrameDuration(900);
+        otterSpriteView.setFrameDuration(1500);
 
         logoSpriteView = findViewById(R.id.logoSpriteView);
         logoSpriteView.setSpriteSheet(
