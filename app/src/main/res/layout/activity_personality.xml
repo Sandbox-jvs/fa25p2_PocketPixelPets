@@ -20,6 +20,7 @@
         android:layout_marginEnd="16dp"
         android:gravity="center"
         android:text="@string/choose_a_personality"
+        android:textColor="@color/action_color"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +36,7 @@
         android:layout_marginEnd="32dp"
         android:gravity="center"
         android:text="@string/this_will_change_how_your_pet_behaves"
+        android:textColor="@color/action_color"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -69,6 +71,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="@string/cheerful"
+                android:textColor="@color/action_color"
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
@@ -79,6 +82,7 @@
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:text="@string/stays_happy_for_longer"
+                android:textColor="@color/action_color"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -113,8 +117,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/lazy"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/lazySubtitle"
                 android:layout_width="wrap_content"
@@ -122,6 +128,7 @@
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:text="@string/gets_hungry_more_slowly"
+                android:textColor="@color/action_color"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -155,8 +162,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/playful"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <!-- Playful card subtext -->
             <TextView
                 android:id="@+id/playfulSubtitle"
@@ -165,6 +173,7 @@
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:text="@string/playing_boosts_happiness_more"
+                android:textColor="@color/action_color"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -198,8 +207,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="Clean Freak"
-                android:textStyle="bold"
-                android:textSize="20sp"/>
+                android:textColor="@color/action_color"
+                android:textSize="20sp"
+                android:textStyle="bold" />
             <!-- Clean Freak card subtext -->
             <TextView
                 android:id="@+id/cleanFreakSubtitle"
@@ -208,6 +218,7 @@
                 android:gravity="center"
                 android:paddingTop="4dp"
                 android:text="Stays clean for longer."
+                android:textColor="@color/action_color"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -216,10 +227,10 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="50dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         android:text="Next"
         android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cheerfulButton" />
 
