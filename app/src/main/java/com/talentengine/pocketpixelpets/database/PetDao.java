@@ -9,6 +9,7 @@ package com.talentengine.pocketpixelpets.database;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.Query;
+import androidx.room.Update;
 
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 
@@ -19,6 +20,9 @@ public interface PetDao {
     // Insert a Pet
     @Insert
     public long insertPet(Pet pet);
+
+    @Update
+    void updatePet(Pet pet);
 
     // Get a pet given the Pet ID
     @Query("SELECT * FROM pets WHERE pet_id = :petId LIMIT 1")

@@ -24,7 +24,7 @@ import java.util.concurrent.Executors;
  * @since 12/07/2025
  */
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {Pet.class, Action.class, User.class}, version = 5, exportSchema = false)
+@Database(entities = {Pet.class, Action.class, User.class}, version = 7, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "pixelPets_database";
     //Volatile data will only ever live in RAM and ensure thread visibility; this is where the singleton lives
@@ -38,7 +38,8 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     public static final int NUMBER_OF_THREADS = 4;
 
-    /** Child processee that will run in the background. Create a service that will supply threads for us
+    /**
+     * Child processee that will run in the background. Create a service that will supply threads for us
      * to do database operations. Create them all at startup and put them in a pool (Executors), and we do
      * need to do database operations, pull something out of the pool (newFixedThreadPool), then return it
      * to the pool when finished.
@@ -49,6 +50,7 @@ public abstract class AppDatabase extends RoomDatabase {
      * Singleton Accessor - Avoids having multiple instances of the database in memory at a given time.  Prevents race conditions
      * from occurring where two process conflict - Ex: One is trying to query from a table while another
      * attempts to write.
+     *
      * @param context
      * @return an instance of out virtual pet database
      */
@@ -57,7 +59,7 @@ public abstract class AppDatabase extends RoomDatabase {
             // synchronized ensures that the database class supplied is locked into a single thread
             synchronized (AppDatabase.class) {
                 //Make sure it's still null after synchronization and that nothing else made a reference to it
-                if(INSTANCE == null) {
+                if (INSTANCE == null) {
                     Log.d(MainActivity.TAG, "Creating Room database instance...");
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(), AppDatabase.class, DATABASE_NAME)
                             .fallbackToDestructiveMigration()
@@ -88,19 +90,84 @@ public abstract class AppDatabase extends RoomDatabase {
                 admin.setIs_admin(true);
                 userDao.insertUser(admin);
 
-                User testUser1 = new User("testuser1","testuser1");
-                long testUserId = userDao.insertUser(testUser1);
+                // === Test User 1 with Otter pet===
+                User testUser1 = new User("testuser1", "testuser1");
+                long testUser1Id = userDao.insertUser(testUser1);
+                Pet otterPet = createDefaultPet(
+                        (int) testUser1Id,
+                        "Benvolio",
+                        "otter",
+                        "purple",
+                        "playful",
+                        "fish",
+                        "natural",
+                        "stick"
 
-                Pet testPet = new Pet();
-                testPet.setUser_id((int) testUserId);
+                );
+                petDao.insertPet(otterPet);
 
-                petDao.insertPet(testPet);
+                // === Test User 2 with Fox pet ===
+                User testUser2 = new User("testuser2", "testuser2");
+                long testUser2Id = userDao.insertUser(testUser2);
+                Pet foxPet = createDefaultPet(
+                        (int) testUser2Id,
+                        "Puck",
+                        "fox",
+                        "pink",
+                        "cheerful",
+                        "cookie",
+                        "magic",
+                        "bubble wand"
+                );
+                petDao.insertPet(foxPet);
+
+                // === Test User 3 with Turtle pet ===
+                User testUser3 = new User("testuser3", "testuser3");
+                long testUser3Id = userDao.insertUser(testUser3);
+                Pet turtlePet = createDefaultPet(
+                        (int) testUser3Id,
+                        "Ferdinand",
+                        "turtle",
+                        "green",
+                        "clean freak",
+                        "seaweed",
+                        "cloud",
+                        "plushie"
+                );
+                petDao.insertPet(turtlePet);
             });
+        }
+
+        private Pet createDefaultPet(int userId,
+                                     String name,
+                                     String type,
+                                     String color,
+                                     String personality,
+                                     String favoriteFood,
+                                     String background,
+                                     String favoriteToy) {
+            Pet newPet = new Pet();
+            newPet.setUser_id(userId);
+            newPet.setName(name);
+
+            newPet.setHunger(3);
+            newPet.setHappiness(5);
+            newPet.setHygiene(3);
+
+            newPet.setPet_type(type);
+            newPet.setPet_color(color);
+            newPet.setPet_personality(personality);
+            newPet.setFavorite_food(favoriteFood);
+            newPet.setBackground(background);
+            newPet.setPet_toy(favoriteToy);
+
+            return newPet;
         }
     };
 
-
     public abstract PetDao PetDao();
+
     public abstract ActionDao actionDao();
+
     public abstract UserDao userDao();
 }
