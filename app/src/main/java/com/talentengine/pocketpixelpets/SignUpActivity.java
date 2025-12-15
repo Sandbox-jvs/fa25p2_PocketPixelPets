@@ -42,6 +42,8 @@ public class SignUpActivity extends AppCompatActivity {
                 if (verifyUser()) {
                     toastMaker("User created successfully!");
                     Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
+                    intent.putExtra("USER_ID", user.getUser_id());
+                    intent.putExtra("USERNAME", user.getUsername());
                     startActivity(intent);
                     finish();
                     overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
@@ -82,6 +84,8 @@ public class SignUpActivity extends AppCompatActivity {
 
         User newUser = new User(username, password);
         database.userDao().insertUser(newUser);
+
+        user = database.userDao().getUserByUsername(username);
 
         return true;
     }
