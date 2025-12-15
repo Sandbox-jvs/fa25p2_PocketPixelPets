@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gamePlayRoot"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E9FFF6"
+    android:paddingTop="24dp"
+    android:paddingBottom="8dp"
+    tools:context=".GamePlayActivity">
+
+    <LinearLayout
+        android:id="@+id/statsContainer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Happiness -->
+        <TextView
+            android:id="@+id/HappinessLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nokiafc22"
+            android:text="@string/happiness"
+            android:textColor="#6CA893"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/happinessBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/happySquare1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/happySquare2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/happySquare3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/happySquare4"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/happySquare5"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/stat_square_filled" />
+        </LinearLayout>
+
+        <!-- Hunger -->
+        <TextView
+            android:id="@+id/HungerLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/nokiafc22"
+            android:text="@string/hunger"
+            android:textColor="#6CA893"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/hungerBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/hungerSquare1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hungerSquare2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hungerSquare3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hungerSquare4"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hungerSquare5"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/stat_square_filled" />
+        </LinearLayout>
+
+        <!-- Hygiene -->
+        <TextView
+            android:id="@+id/HygieneLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/nokiafc22"
+            android:text="@string/hygiene"
+            android:textColor="#6CA893"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/hygieneBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal">
+
+            <View
+                android:id="@+id/hygieneSquare1"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hygieneSquare2"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hygieneSquare3"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hygieneSquare4"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginEnd="4dp"
+                android:background="@drawable/stat_square_filled" />
+
+            <View
+                android:id="@+id/hygieneSquare5"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:background="@drawable/stat_square_filled" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/petContainer"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvStatusMessage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/statsContainer"
+        app:layout_constraintVertical_bias="0.6">
+
+        <!-- Background Image -->
+        <ImageView
+            android:id="@+id/ivPetBackground"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:adjustViewBounds="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/bg_natural_pond"
+            tools:ignore="ContentDescription" />
+
+        <!-- Pet Sprite -->
+        <com.talentengine.pocketpixelpets.SpriteView
+            android:id="@+id/petSpriteView"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_gravity="center_horizontal|center"
+            tools:ignore="ContentDescription" />
+    </FrameLayout>
+
+    <!-- STATUS MESSAGE BELOW PET -->
+    <TextView
+        android:id="@+id/tvStatusMessage"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/nokiafc22"
+        android:gravity="center"
+        android:text="@string/your_pet_is_feeling_great"
+        android:textColor="@android:color/black"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/bottomButtonRow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/bottomButtonRow"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingHorizontal="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/btnFood"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="36sp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/btnPlay"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text=""
+            android:textSize="36sp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"/>
+
+        <TextView
+            android:id="@+id/btnBathe"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:gravity="center"
+            android:text="@string/bathe"
+            android:textSize="36sp"
+            android:background="@android:color/transparent"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

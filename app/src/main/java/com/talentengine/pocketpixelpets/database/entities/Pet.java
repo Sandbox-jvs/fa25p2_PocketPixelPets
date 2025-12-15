@@ -12,7 +12,7 @@ import java.util.Objects;
 public class Pet {
     @PrimaryKey(autoGenerate = true)
     private int pet_id;
-  
+
     private int user_id;
     private String name;
     private int hunger;
@@ -30,13 +30,14 @@ public class Pet {
         this.created_at = LocalDateTime.now();
     }
 
-    public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background) {
+    public Pet(String name, String pet_type, String pet_color, String pet_personality, String favorite_food, String background, String pet_toy) {
         this.name = name;
         this.pet_type = pet_type;
         this.pet_color = pet_color;
         this.pet_personality = pet_personality;
         this.favorite_food = favorite_food;
         this.background = background;
+        this.pet_toy = pet_toy;
         created_at = LocalDateTime.now();
     }
 
@@ -52,13 +53,25 @@ public class Pet {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         Pet pet = (Pet) o;
-        return pet_id == pet.pet_id && hunger == pet.hunger && hygiene == pet.hygiene && happiness == pet.happiness && Objects.equals(name, pet.name) && Objects.equals(pet_type, pet.pet_type) && Objects.equals(pet_color, pet.pet_color) && Objects.equals(pet_personality, pet.pet_personality) && Objects.equals(favorite_food, pet.favorite_food) && Objects.equals(background, pet.background) && Objects.equals(created_at, pet.created_at);
+        return pet_id == pet.pet_id
+                && hunger == pet.hunger
+                && hygiene == pet.hygiene
+                && happiness == pet.happiness
+                && Objects.equals(name, pet.name)
+                && Objects.equals(pet_type, pet.pet_type)
+                && Objects.equals(pet_color, pet.pet_color)
+                && Objects.equals(pet_personality, pet.pet_personality)
+                && Objects.equals(favorite_food, pet.favorite_food)
+                && Objects.equals(background, pet.background)
+                && Objects.equals(pet_toy, pet.pet_toy)
+                && Objects.equals(created_at, pet.created_at);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(pet_id, name, hunger, hygiene, happiness, pet_type, pet_color, pet_personality, favorite_food, background, created_at);
+        return Objects.hash(pet_id, name, hunger, hygiene, happiness, pet_type, pet_color, pet_personality, favorite_food, background, pet_toy, created_at);
     }
+
 
     public int getPet_id() {
         return pet_id;

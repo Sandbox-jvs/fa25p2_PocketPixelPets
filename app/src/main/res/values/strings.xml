@@ -7,4 +7,9 @@
     <string name="next">Next</string>
     <string name="choose_your_pet">Choose Your Pet</string>
     <string name="choose_a_background">Choose a Background</string>
+    <string name="happiness">Happiness</string>
+    <string name="hunger">Hunger</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="bathe">🧼</string>
+    <string name="your_pet_is_feeling_great">Your pet is feeling great!</string>
 </resources>
