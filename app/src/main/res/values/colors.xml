@@ -8,4 +8,6 @@
     <color name="bar_title_color">#2988ED</color>
     <color name="bar_username_color">#2988ED</color>
     <color name="action_color">#A5D6C4</color>
+
+    <color name="app_background_color">#E9FFF6</color>
 </resources>

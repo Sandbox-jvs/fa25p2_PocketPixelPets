@@ -6,7 +6,7 @@
         <item name="android:windowActivityTransitions">true</item>
 
         <!-- Background color of the action bar -->
-        <item name="colorPrimary">#A5D6C4</item>
+        <item name="colorPrimary">@color/app_background_color</item>
 
 
 
