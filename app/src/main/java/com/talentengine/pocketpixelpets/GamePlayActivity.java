@@ -156,7 +156,7 @@ public class GamePlayActivity extends AppCompatActivity {
         }
 
         petSpriteView.setSpriteSheet(spriteRes, 2, 3);
-        petSpriteView.setFrameDuration(1500);
+        petSpriteView.setFrameDuration(3000);
         petSpriteView.start();
 
         applyPetPositioning();
