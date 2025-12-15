@@ -16,4 +16,9 @@
     <string name="gets_hungry_more_slowly">Gets hungry more slowly.</string>
     <string name="playful">Playful</string>
     <string name="playing_boosts_happiness_more">Playing boosts happiness more.</string>
+    <string name="happiness">Happiness</string>
+    <string name="hunger">Hunger</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="bathe">🧼</string>
+    <string name="your_pet_is_feeling_great">Your pet is feeling great!</string>
 </resources>

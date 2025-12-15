@@ -42,7 +42,7 @@ public class LoginActivity extends AppCompatActivity {
                 if (!verifyUser()) {
                     toastMaker("Invalid credentials");
                 } else {
-                    Intent intent = new Intent(LoginActivity.this, ChoosePetActivity.class);
+                    Intent intent = new Intent(LoginActivity.this, GamePlayActivity.class);
                     intent.putExtra("USER_ID", user.getUser_id());
                     intent.putExtra("USERNAME", user.getUsername());
                     startActivity(intent);
