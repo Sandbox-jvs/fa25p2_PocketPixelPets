@@ -5,7 +5,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
 
 /**
  * @author Jessica Sandoval
@@ -16,6 +20,9 @@ import androidx.appcompat.app.AppCompatActivity;
 public class ChoosePersonalityActivity extends AppCompatActivity {
     //Will be updated when a user selects Cheerful, Lazy, Playful, or Clean Freak
     private String selectedPersonality = null;
+
+    private String username;
+    private Button nextButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +36,8 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
         View btnPlayful = findViewById(R.id.playfulButton);
         View btnCleanFreak = findViewById(R.id.cleanFreakButton);
 
+        username = getIntent().getStringExtra("USERNAME");
+
 
 
         //Wire up with intents
@@ -37,30 +46,46 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
                 Toast.makeText(this, "Oops! Please select a personality for your pet!", Toast.LENGTH_SHORT).show();
             }
 
-            Intent intent = new Intent(this, ChooseFoodActivity.class);
-            startActivity(intent);
+
+            goToNextStep();
         });
 
         btnLazy.setOnClickListener(v -> {
-            selectedPersonality = "Cheerful";
-            btnNext.setEnabled(true);
-        });
-
-        btnPlayful.setOnClickListener(v -> {
             selectedPersonality = "Lazy";
             btnNext.setEnabled(true);
         });
 
-        btnCleanFreak.setOnClickListener(v -> {
+        btnPlayful.setOnClickListener(v -> {
             selectedPersonality = "Playful";
             btnNext.setEnabled(true);
         });
 
-        btnCheerful.setOnClickListener(v -> {
+        btnCleanFreak.setOnClickListener(v -> {
             selectedPersonality = "Clean Freak";
+            btnNext.setEnabled(true);
+        });
+
+        btnCheerful.setOnClickListener(v -> {
+            selectedPersonality = "Cheerful";
             btnNext.setEnabled(true);
         });
     }
 
-}
+private void goToNextStep() {
+    // Get User ID from last activity
+    Intent lastIntent = getIntent();
+    int user_id = lastIntent.getIntExtra("USER_ID", -1);
 
+    // Update the Pet in the database
+    Pet pet = AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+    pet.setPet_personality(selectedPersonality);
+    AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().updatePet(pet);
+
+    // Pass username to NamePetActivity
+    Intent next = new Intent(ChoosePersonalityActivity.this, NamePetActivity.class);
+    next.putExtra("USERNAME", username);
+    next.putExtra("USER_ID", user_id);
+    startActivity(next);
+    finish();
+}
+}
