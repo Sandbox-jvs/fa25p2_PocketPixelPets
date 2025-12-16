@@ -51,7 +51,7 @@ public class ChooseToyActivity extends AppCompatActivity {
             Toast.makeText(this, "Look at all the bubbles!", Toast.LENGTH_SHORT).show();
         });
 
-        Button nextButton = findViewById(R.id.nextButtonToy);
+        nextButton = findViewById(R.id.nextButtonToy);
         nextButton.setOnClickListener(v -> goToNextStep());
 
     }
