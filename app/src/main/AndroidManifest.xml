@@ -25,7 +25,7 @@
             android:exported="false" />
         <activity
             android:name=".ChoosePetColorActivity"
-            android:exported="true" />
+            android:exported="false" />
         <activity
             android:name=".GamePlayActivity"
             android:exported="false" />

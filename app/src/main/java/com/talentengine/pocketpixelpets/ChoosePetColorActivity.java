@@ -21,6 +21,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.PetDao;
+import com.talentengine.pocketpixelpets.database.UserDao;
+import com.talentengine.pocketpixelpets.database.entities.User;
 
 public class ChoosePetColorActivity extends AppCompatActivity {
 
@@ -52,8 +56,9 @@ public class ChoosePetColorActivity extends AppCompatActivity {
 
         // Initialize all the assets
 
-        // TODO: Pull the current pet from the last activity, currently defaults to otter
-        petType = "otter";
+        // Set the pet type
+        Intent choosePetIntent = getIntent();
+        petType = choosePetIntent.getStringExtra("PET_TYPE");
 
         purpleButton = findViewById(R.id.purpleButton);
         mintButton = findViewById(R.id.mintButton);
@@ -75,7 +80,6 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         variableSprite.setFrameDuration(1500);
         variableSprite.start();
 
-        // TODO: Get the current TYPE of pet and render that sprite
         purpleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
