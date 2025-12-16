@@ -45,7 +45,6 @@ public class ChoosePetActivity extends AppCompatActivity {
         Intent loginIntent = getIntent();
         username = loginIntent.getStringExtra("USERNAME");
         user_id = loginIntent.getIntExtra("USER_ID", -1);
-        Toast.makeText(this, ("THE USER ID IS " + user_id), Toast.LENGTH_SHORT).show();     // TODO: REMOVE DEBUG
         // Initialize database helper
 
         otterSpriteView = findViewById(R.id.otterSpriteView);

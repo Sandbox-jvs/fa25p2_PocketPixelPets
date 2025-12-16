@@ -254,7 +254,6 @@ public class ChooseColorActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        // TODO: Finish logout method
         Intent intent = new Intent(ChooseColorActivity.this, MainActivity.class);
         startActivity(intent);
     }
