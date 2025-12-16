@@ -57,6 +57,10 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         // Default select the purple button
         selectButton(purpleButton);
 
+        // Start the animation
+        variableSprite.setFrameDuration(1500);
+        variableSprite.start();
+
         // TODO: Get the current TYPE of pet and render that sprite
         purpleButton.setOnClickListener(new View.OnClickListener() {
             @Override
