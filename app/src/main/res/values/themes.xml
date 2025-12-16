@@ -27,7 +27,7 @@
 
     <!-- Remove drop shadow and change background color of action bar -->
     <style name="Widget.PocketPixelPets.ActionBar" parent="Widget.MaterialComponents.ActionBar.Solid">
-        <item name="background">@color/app_background_color</item>
+        <item name="background">@color/appBackgroundColor</item>
         <item name="elevation">0dp</item>
     </style>
 
