@@ -9,6 +9,7 @@ package com.talentengine.pocketpixelpets;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -53,7 +54,7 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         variableSprite = findViewById(R.id.petSpritePreview);
 
 
-        // TODO: Default select one of the buttons, greying out the rest
+        // Default select the purple button
         selectButton(purpleButton);
 
         // TODO: Get the current TYPE of pet and render that sprite
@@ -112,13 +113,46 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         selectedButton = pressedButton;
 
         // TODO: Update the sprite
+        updateSprite(pressedButton);
     }
 
+    /**
+     * Dims all the buttons to the preset DIMMED_ALPHA opacity value
+     */
     private void dimAllButtons() {
         // Set each of the button's alphas to grey
         purpleButton.setAlpha(DIMMED_ALPHA);
         mintButton.setAlpha(DIMMED_ALPHA);
         blueButton.setAlpha(DIMMED_ALPHA);
         pinkButton.setAlpha(DIMMED_ALPHA);
+    }
+
+    /**
+     * Given the button that was pressed, set the sprite to match the animal and color
+     * @param button the currently selected button
+     */
+    void updateSprite(MaterialButton button) {
+        // Dynamically generate the filename based on the creature type and color
+        StringBuilder fileName = new StringBuilder();
+
+        String color = "";
+        if (button.equals(purpleButton)) {
+            color = "purple";
+        } else if (button.equals(mintButton)) {
+            color = "green";
+        } else if (button.equals(blueButton)) {
+            color = "blue";
+        } else if (button.equals(pinkButton)) {
+            color = "pink";
+        }
+
+        // The filename of the sprite sheet is organized as {pet_type}_sprite_sheet_{color}.png
+        fileName.append(petType).append("_sprite_sheet_").append(color);
+
+        // Convert the filename to an id as the setSpriteSheet method relies on it
+        int resId = getResources().getIdentifier(fileName.toString(), "drawable", getPackageName());
+
+        // Update the sprite
+        variableSprite.setSpriteSheet(resId, 2, 3);
     }
 }
