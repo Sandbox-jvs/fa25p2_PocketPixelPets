@@ -11,24 +11,28 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.button.MaterialButton;
+
 public class ChoosePetColorActivity extends AppCompatActivity {
 
     // The sprite that reflects our current pet and color
     private SpriteView variableSprite;
 
     // The buttons used for selecting the color
-    private Button purpleButton;
-    private Button mintButton;
-    private Button blueButton;
-    private Button pinkButton;
-    private Button selectedButton;      // A reference to our currently selected color
+    private MaterialButton purpleButton;
+    private MaterialButton mintButton;
+    private MaterialButton blueButton;
+    private MaterialButton pinkButton;
+    private MaterialButton selectedButton;      // A reference to our currently selected color
 
     // The button to go to the next activity
-    private Button nextButton;
+    private MaterialButton nextButton;
 
     // Used for dimming the buttons
     private static final float DIMMED_ALPHA = 0.35f;
     private static final float FULL_ALPHA = 1.0f;
+
+    private String petType;     // {otter, fox, turtle} and defaults to otter
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,9 +40,20 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_pet_color);
 
         // Initialize all the assets
+
         // TODO: Pull the current pet from the last activity, currently defaults to otter
+        petType = "otter";
+
+        purpleButton = findViewById(R.id.purpleButton);
+        mintButton = findViewById(R.id.mintButton);
+        blueButton = findViewById(R.id.blueButton);
+        pinkButton = findViewById(R.id.pinkButton);
+        nextButton = findViewById(R.id.nextButton);
+        variableSprite = findViewById(R.id.petSpritePreview);
+
 
         // TODO: Default select one of the buttons, greying out the rest
+        selectButton(purpleButton);
 
         // TODO: Get the current TYPE of pet and render that sprite
 
@@ -50,7 +65,7 @@ public class ChoosePetColorActivity extends AppCompatActivity {
     /**
      * When the user selects a button, this button becomes active and all other buttons are greyed out
      */
-    private void selectButton(Button pressedButton) {
+    private void selectButton(MaterialButton pressedButton) {
         // Check if our button is already selected
         if (selectedButton.equals(pressedButton)) {
             return;
@@ -64,6 +79,8 @@ public class ChoosePetColorActivity extends AppCompatActivity {
 
         // Keep track of the new selected button using our variable
         selectedButton = pressedButton;
+
+        // TODO: Update the sprite
     }
 
     private void dimAllButtons() {
