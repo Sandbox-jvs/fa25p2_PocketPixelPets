@@ -19,6 +19,8 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
 
 public class ChooseColorActivity extends AppCompatActivity {
 
@@ -42,6 +44,7 @@ public class ChooseColorActivity extends AppCompatActivity {
     private static final float FULL_ALPHA = 1.0f;
 
     private String petType;     // {otter, fox, turtle} and defaults to otter
+    private String color;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,9 +108,19 @@ public class ChooseColorActivity extends AppCompatActivity {
 
 
     private void goToPersonality() {
-        // Pass username to the next activity
+        // Get User ID from last activity
+        Intent lastIntent = getIntent();
+        int user_id = lastIntent.getIntExtra("USER_ID", -1);
+
+        // Update the Pet in the database
+        Pet pet = AppDatabase.getDatabase(ChooseColorActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+        pet.setPet_color(color);
+        AppDatabase.getDatabase(ChooseColorActivity.this).PetDao().updatePet(pet);
+
+        // Pass username + user_id to the next activity
         Intent intent = new Intent(this, ChoosePersonalityActivity.class);
         intent.putExtra("USERNAME", username);
+        intent.putExtra("USER_ID", user_id);
         startActivity(intent);
         // Prevent going back to this activity
         finish();
@@ -156,7 +169,6 @@ public class ChooseColorActivity extends AppCompatActivity {
         // Dynamically generate the filename based on the creature type and color
         StringBuilder fileName = new StringBuilder();
 
-        String color = "";
         if (button.equals(purpleButton)) {
             color = "purple";
         } else if (button.equals(mintButton)) {
