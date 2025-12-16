@@ -6,27 +6,221 @@
     android:layout_height="match_parent"
     android:background="#E9FFF6">
 
-    <TextView
-        android:id="@+id/screenTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Choose Toy Activity"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#6CA893"
-        android:fontFamily="@font/nokiafc22"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
 
-    <Button
-        android:id="@+id/nextButtonToy"
-        android:layout_width="wrap_content"
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/chooseToyTextView"
+        android:textStyle="bold"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/next"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="125dp"
+        android:fontFamily="@font/nokiafc22"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="Choose a favorite toy"
+        android:textColor="#6CA893"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/chooseToySubtitleTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="What does your pet like to play with?"
+        android:textColor="#6CA893"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseToyTextView" />
+
+    <!-- Ball card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/ballButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseToySubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside the Ball card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/ball_toy" />
+
+            <TextView
+                android:id="@+id/ballCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Ball"
+
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Plushie card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/plushieButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ballButton"
+        app:layout_constraintTop_toBottomOf="@id/chooseToySubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+
+        <!-- Content inside Plushie card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/plushie_toy" />
+
+            <TextView
+                android:id="@+id/plushieCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Plushie"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Stick card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/stickButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/ballButton"
+        app:layout_constraintTop_toBottomOf="@+id/ballButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Stick card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/stick_toy" />
+
+            <!-- Stick card title -->
+            <TextView
+                android:id="@+id/stickTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Stick"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Bubble Wand card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/bubbleWandButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/plushieButton"
+        app:layout_constraintTop_toBottomOf="@id/ballButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Bubble Wand card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/bubble_wand_toy" />
+
+            <!-- Bubble Wand card title -->
+            <TextView
+                android:id="@+id/bubbleWandTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Bubble Wand"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+            <!-- Bubble Wand card subtext -->
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:backgroundTint="@color/action_color"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/nextButtonPersonality"
+        android:layout_marginTop="50dp"
+        android:text="Next"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ballButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
