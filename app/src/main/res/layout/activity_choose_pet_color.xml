@@ -33,13 +33,12 @@
         android:id="@+id/petSpritePreview"
         android:layout_width="200dp"
         android:layout_height="200dp"
-        android:alpha="0.35"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@id/pickAColorTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/choosePetColorTitle"
         app:layout_constraintVertical_bias="1.0"
         app:layout_constraintVertical_chainStyle="packed" />
 
@@ -48,14 +47,19 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
-        android:layout_marginTop="20dp"
         android:layout_marginEnd="24dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="#6CA893"
+        android:fontFamily="@font/nokiafc22"
         android:text="@string/next"
+        android:textAllCaps="false"
+        android:textColor="#E9FFF6"
+        android:textSize="24sp"
+        app:cornerRadius="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/allButtonsLayout"/>
 
     <TextView
         android:id="@+id/pickAColorTextView"
@@ -64,7 +68,7 @@
         android:gravity="center"
 
         android:fontFamily="@font/nokiafc22"
-        android:textColor="#6CA893"
+        android:textColor="@color/header_text_color"
         android:textSize="18sp"
 
         android:layout_marginTop="12dp"
@@ -72,7 +76,165 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/petSpritePreview"
+        app:layout_constraintBottom_toTopOf="@id/allButtonsLayout"
+        android:layout_marginBottom="12dp"
         tools:layout_editor_absoluteY="302dp" />
+
+
+    <!-- All Buttons Grouped Together -->
+    <LinearLayout
+        android:id="@+id/allButtonsLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/petSpritePreview"
+        app:layout_constraintBottom_toTopOf="@id/nextButton"
+        android:layout_margin="12dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent">
+
+
+
+        <!-- Purple Button -->
+        <LinearLayout
+            android:id="@+id/purpleButtonLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/nextButton"
+            app:layout_constraintEnd_toStartOf="@id/mintButtonLinearLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/pickAColorTextView">
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/purpleButton"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_circle"
+                android:shadowColor="#00000000"
+                app:backgroundTint="@null"
+                app:strokeColor="@color/header_text_color"
+                app:strokeWidth="2dp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+
+            <TextView
+                android:id="@+id/purpleButtonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Purple"
+                android:textColor="@color/header_text_color"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+
+        <!-- Mint Button -->
+        <LinearLayout
+            android:id="@+id/mintButtonLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/nextButton"
+            app:layout_constraintEnd_toStartOf="@id/blueButtonLinearLayout"
+            app:layout_constraintStart_toEndOf="@id/purpleButtonLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/pickAColorTextView">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/mintButton"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_circle_mint"
+                android:shadowColor="#00000000"
+                app:backgroundTint="@null"
+                app:strokeColor="@color/header_text_color"
+                app:strokeWidth="2dp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <TextView
+                android:id="@+id/mintButtonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Mint"
+                android:textColor="@color/header_text_color"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Blue Button -->
+        <LinearLayout
+            android:id="@+id/blueButtonLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/nextButton"
+            app:layout_constraintEnd_toStartOf="@id/pinkButtonLinearLayout"
+            app:layout_constraintStart_toEndOf="@id/mintButtonLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/pickAColorTextView">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/blueButton"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_circle_blue"
+                android:shadowColor="#00000000"
+                app:backgroundTint="@null"
+                app:strokeColor="@color/header_text_color"
+                app:strokeWidth="2dp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <TextView
+                android:id="@+id/blueButtonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Blue"
+                android:textColor="@color/header_text_color"
+                android:textSize="18sp" />
+        </LinearLayout>
+
+        <!-- Pink Button -->
+        <LinearLayout
+            android:id="@+id/pinkButtonLinearLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/nextButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/blueButtonLinearLayout"
+            app:layout_constraintTop_toBottomOf="@id/pickAColorTextView">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/pinkButton"
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:background="@drawable/button_circle_pink"
+                android:shadowColor="#00000000"
+                app:backgroundTint="@null"
+                app:strokeColor="@color/header_text_color"
+                app:strokeWidth="2dp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="100dp" />
+
+            <TextView
+                android:id="@+id/pinkButtonTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Pink"
+                android:textColor="@color/header_text_color"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </LinearLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

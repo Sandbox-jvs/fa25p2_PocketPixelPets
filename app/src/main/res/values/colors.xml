@@ -13,6 +13,13 @@
     <color name="appBackgroundColor">#E9FFF6</color>
     <color name="buttonBackgroundColor">#6CA893</color>
     <color name="buttonTextColor">#E9FFF6</color>
+    <color name="header_text_color">#6CA893</color>
+
+    <!-- Pet Colors -->
+    <color name="pet_purple">#CA94F8</color>
+    <color name="pet_mint">#A5D6C4</color>
+    <color name="pet_blue">#A7D8FF</color>
+    <color name="pet_pink">#F9B8D0</color>
 
 
 </resources>
