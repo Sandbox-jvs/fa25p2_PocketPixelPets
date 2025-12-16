@@ -33,7 +33,7 @@ public class ChooseToyActivity extends AppCompatActivity {
         stickButton = findViewById(R.id .stickButton);
         bubbleWandButton = findViewById(R.id .bubbleWandButton);
 
-        // Wire with intents
+        // Wire the click listeners for the toy option views
         ballButton.setOnClickListener(v -> {
             selectedToy = "Ball";
             Toast.makeText(this, "Boing! Boing!", Toast.LENGTH_SHORT).show();
