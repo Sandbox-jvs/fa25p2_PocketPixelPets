@@ -224,7 +224,8 @@
         </LinearLayout>
     </com.google.android.material.card.MaterialCardView>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
+        android:backgroundTint="@color/action_color"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:id="@+id/nextButtonPersonality"
