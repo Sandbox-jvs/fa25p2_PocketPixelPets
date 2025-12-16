@@ -20,9 +20,16 @@ import com.talentengine.pocketpixelpets.database.entities.Pet;
 public class ChoosePersonalityActivity extends AppCompatActivity {
     //Will be updated when a user selects Cheerful, Lazy, Playful, or Clean Freak
     private String selectedPersonality = null;
-
+    //Full opacity
+    private static final float FULL_ALPHA = 1.0f;
+    //Partial transparency
+    private static final float DIMMED_ALPHA = 0.3f;
+    View cheerfulCard;
+    View lazyCard;
+    View playfulCard;
+    View cleanFreakCard;
     private String username;
-    private Button nextButton;
+    private Button nextButtonPersonality;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,46 +37,50 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_personality);
 
         //Get references to the views within the xml file
-        Button btnNext = findViewById(R.id.nextButtonPersonality);
-        View btnCheerful = findViewById(R.id.cheerfulButton);
-        View btnLazy = findViewById(R.id.lazyButton);
-        View btnPlayful = findViewById(R.id.playfulButton);
-        View btnCleanFreak = findViewById(R.id.cleanFreakButton);
+        nextButtonPersonality = findViewById(R.id.nextButtonPersonality);
+        cheerfulCard = findViewById(R.id.cheerfulButton);
+        lazyCard = findViewById(R.id.lazyButton);
+        playfulCard = findViewById(R.id.playfulButton);
+        cleanFreakCard = findViewById(R.id.cleanFreakButton);
 
         username = getIntent().getStringExtra("USERNAME");
 
 
 
         //Wire up with intents
-        btnNext.setOnClickListener(v -> {
+        nextButtonPersonality.setOnClickListener(v -> {
             if (selectedPersonality == null) {
                 Toast.makeText(this, "Oops! Please select a personality for your pet!", Toast.LENGTH_SHORT).show();
             }
 
-
             goToNextStep();
         });
 
-        btnLazy.setOnClickListener(v -> {
+        lazyCard.setOnClickListener(v -> {
             selectedPersonality = "Lazy";
-            btnNext.setEnabled(true);
+            nextButtonPersonality.setEnabled(true);
         });
 
-        btnPlayful.setOnClickListener(v -> {
+        playfulCard.setOnClickListener(v -> {
             selectedPersonality = "Playful";
-            btnNext.setEnabled(true);
+            nextButtonPersonality.setEnabled(true);
         });
 
-        btnCleanFreak.setOnClickListener(v -> {
+        cleanFreakCard.setOnClickListener(v -> {
             selectedPersonality = "Clean Freak";
-            btnNext.setEnabled(true);
+            nextButtonPersonality.setEnabled(true);
         });
 
-        btnCheerful.setOnClickListener(v -> {
+        cheerfulCard.setOnClickListener(v -> {
             selectedPersonality = "Cheerful";
-            btnNext.setEnabled(true);
+            nextButtonPersonality.setEnabled(true);
         });
     }
+
+    private void dimmedPersonalityCard() {
+
+    }
+    private void onSelectedPersonality() {}
 
 private void goToNextStep() {
     // Get User ID from last activity
