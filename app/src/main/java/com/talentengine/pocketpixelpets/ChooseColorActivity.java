@@ -101,8 +101,6 @@ public class ChooseColorActivity extends AppCompatActivity {
                 selectButton(pinkButton);
             }
         });
-
-        // TODO: When our 'next' button is pressed, pass that along the chain
     }
 
 
@@ -136,7 +134,6 @@ public class ChooseColorActivity extends AppCompatActivity {
         // Keep track of the new selected button using our variable
         selectedButton = pressedButton;
 
-        // TODO: Update the sprite
         updateSprite(pressedButton);
     }
 
