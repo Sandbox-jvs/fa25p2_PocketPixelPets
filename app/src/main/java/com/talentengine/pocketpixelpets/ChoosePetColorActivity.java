@@ -7,6 +7,7 @@
 package com.talentengine.pocketpixelpets;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -56,6 +57,33 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         selectButton(purpleButton);
 
         // TODO: Get the current TYPE of pet and render that sprite
+        purpleButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectButton(purpleButton);
+            }
+        });
+
+        mintButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectButton(mintButton);
+            }
+        });
+
+        blueButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectButton(blueButton);
+            }
+        });
+
+        pinkButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                selectButton(pinkButton);
+            }
+        });
 
         // TODO: When our 'next' button is pressed, pass that along the chain
     }
@@ -66,8 +94,11 @@ public class ChoosePetColorActivity extends AppCompatActivity {
      * When the user selects a button, this button becomes active and all other buttons are greyed out
      */
     private void selectButton(MaterialButton pressedButton) {
-        // Check if our button is already selected
-        if (selectedButton.equals(pressedButton)) {
+        // If our selectedButton is null, initialize it
+        if (selectedButton == null) {
+            selectedButton = pressedButton;
+        } else if (selectedButton.equals(pressedButton)) {
+            // Return if the button is already selected
             return;
         }
 
