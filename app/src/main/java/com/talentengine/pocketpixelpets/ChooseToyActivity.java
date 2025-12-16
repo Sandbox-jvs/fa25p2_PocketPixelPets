@@ -38,8 +38,20 @@ public class ChooseToyActivity extends AppCompatActivity {
             selectedToy = "Ball";
             Toast.makeText(this, "Boing! Boing!", Toast.LENGTH_SHORT).show();
                 });
+        plushieButton.setOnClickListener(v -> {
+            selectedToy = "Plushie";
+            Toast.makeText(this, "So soft... Or chewy!", Toast.LENGTH_SHORT).show();
+        });
+        stickButton.setOnClickListener(v -> {
+            selectedToy = "Stick";
+            Toast.makeText(this, "Organic choice!", Toast.LENGTH_SHORT).show();
+        });
+        bubbleWandButton.setOnClickListener(v -> {
+            selectedToy = "Bubble Wand";
+            Toast.makeText(this, "Look at all the bubbles!", Toast.LENGTH_SHORT).show();
+        });
 
-        nextButton = findViewById(R.id.nextButtonToy);
+        Button nextButton = findViewById(R.id.nextButtonToy);
         nextButton.setOnClickListener(v -> goToNextStep());
 
     }
