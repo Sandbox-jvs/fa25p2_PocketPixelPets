@@ -23,7 +23,7 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
         setContentView(R.layout.activity_choose_personality);
 
         //Get references to the views within the xml file
-        Button btnNext = findViewById(R.id.nextButton);
+        Button btnNext = findViewById(R.id.nextButtonPersonality);
         View btnCheerful = findViewById(R.id.cheerfulButton);
         View btnLazy = findViewById(R.id.lazyButton);
         View btnPlayful = findViewById(R.id.playfulButton);
