@@ -39,9 +39,7 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!verifyUser()) {
-                    toastMaker("Invalid credentials");
-                } else {
+                if (verifyUser()) {
                     Intent intent = new Intent(LoginActivity.this, GamePlayActivity.class);
                     intent.putExtra("USER_ID", user.getUser_id());
                     intent.putExtra("USERNAME", user.getUsername());
@@ -72,22 +70,19 @@ public class LoginActivity extends AppCompatActivity {
 
     private boolean verifyUser() {
         String username = usernameInput.getText().toString();
-        if (username.isEmpty()) {
-            toastMaker("username should not be blank");
+        String password = passwordInput.getText().toString();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            toastMaker("Username and password should not be blank");
             return false;
         }
         user = database.userDao().getUserByUsername(username);
-        if (user != null) {
-            String password = passwordInput.getText().toString();
-            if (password.equals(user.getPassword())) {
-                return true;
-            } else {
-                toastMaker("Invalid password");
-                return false;
-            }
+        if (user != null && password.equals(user.getPassword())) {
+            return true;
+        } else {
+            toastMaker("Invalid username or password");
+            return false;
         }
-        toastMaker(String.format("No %s found", username));
-        return false;
     }
 
     private void toastMaker(String message) {
