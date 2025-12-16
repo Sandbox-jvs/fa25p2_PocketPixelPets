@@ -45,6 +45,7 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
 
         username = getIntent().getStringExtra("USERNAME");
 
+        dimmedPersonalityCard();
 
 
         //Wire up with intents
@@ -78,6 +79,10 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
     }
 
     private void dimmedPersonalityCard() {
+        cheerfulCard.setAlpha(DIMMED_ALPHA);
+        lazyCard.setAlpha(DIMMED_ALPHA);
+        playfulCard.setAlpha(DIMMED_ALPHA);
+        cleanFreakCard.setAlpha(DIMMED_ALPHA);
 
     }
     private void onSelectedPersonality() {}
