@@ -214,7 +214,7 @@
         android:backgroundTint="@color/action_color"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/nextButtonPersonality"
+        android:id="@+id/nextButtonToy"
         android:layout_marginTop="50dp"
         android:text="Next"
         android:textSize="20sp"
