@@ -23,4 +23,8 @@
     <string name="hygiene">Hygiene</string>
     <string name="bathe">🧼</string>
     <string name="your_pet_is_feeling_great">Your pet is feeling great!</string>
+    <string name="pink">Pink</string>
+    <string name="blue">Blue</string>
+    <string name="mint">Mint</string>
+    <string name="purple">Purple</string>
 </resources>
