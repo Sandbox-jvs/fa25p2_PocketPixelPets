@@ -24,7 +24,7 @@
             android:name=".ChoosePersonalityActivity"
             android:exported="false" />
         <activity
-            android:name=".ChoosePetColorActivity"
+            android:name=".ChooseColorActivity"
             android:exported="false" />
         <activity
             android:name=".GamePlayActivity"
