@@ -227,6 +227,7 @@
     <Button
         android:layout_width="150dp"
         android:layout_height="50dp"
+        android:id="@+id/nextButtonPersonality"
         android:text="Next"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"

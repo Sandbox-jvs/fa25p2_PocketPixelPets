@@ -30,6 +30,8 @@ public class ChoosePetActivity extends AppCompatActivity {
     private MaterialButton continueButton;
 
     private String selectedPet = null;
+    private String username = null;
+    private PetDatabaseHelper dbHelper;
 
     private static final float DIMMED_ALPHA = 0.35f;
     private static final float FULL_ALPHA = 1.0f;
@@ -38,6 +40,11 @@ public class ChoosePetActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_pet);
+        // Get username from signup activity
+        Intent loginIntent = getIntent();
+        username = loginIntent.getStringExtra("USERNAME");
+        // Initialize database helper
+        dbHelper = new PetDatabaseHelper(this);
 
         otterSpriteView = findViewById(R.id.otterSpriteView);
         turtleSpriteView = findViewById(R.id.turtleSpriteView);
@@ -114,9 +121,24 @@ public class ChoosePetActivity extends AppCompatActivity {
             return;
         }
 
-        Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra("selected_pet", selectedPet);
+        if (username == null || username.isEmpty()) {
+            Toast.makeText(this, "Error: user not found.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Insert new pet (username + pet type) into DB
+        long rowId = dbHelper.insertNewPet(username, selectedPet);
+
+        if (rowId == -1) {
+            Toast.makeText(this, "Error saving pet. Please try again.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Pass user along to next activity
+        Intent intent = new Intent(this, ChooseColorActivity.class);
+        intent.putExtra("USERNAME", username);
         startActivity(intent);
+        // Prevents going back to this activity
         finish();
     }
 

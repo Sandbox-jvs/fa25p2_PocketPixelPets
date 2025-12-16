@@ -12,6 +12,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketPixelPets">
         <activity
+            android:name=".ChooseColorActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NamePetActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseToyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChooseFoodActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ChoosePersonalityActivity"
+            android:exported="false" />
+        <activity
             android:name=".GamePlayActivity"
             android:exported="false" />
         <activity

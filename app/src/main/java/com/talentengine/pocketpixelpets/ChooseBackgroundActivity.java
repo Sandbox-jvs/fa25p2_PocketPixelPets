@@ -21,10 +21,17 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
 
     private int selectedBackgroundResId = R.drawable.bg_natural_pond; // default
 
+    private String username;
+    private PetDatabaseHelper dbHelper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_background);
+
+        // Get username from previous step
+        Intent intent = getIntent();
+        username = intent.getStringExtra("USERNAME");
 
         backgroundPreview   = findViewById(R.id.backgroundPreview);
         btnNaturalPond      = findViewById(R.id.btnNaturalPond);
@@ -48,9 +55,10 @@ public class ChooseBackgroundActivity extends AppCompatActivity {
                 applySelection(btnFantasyClouds, R.drawable.bg_fantasy_clouds));
 
         nextButton.setOnClickListener(v -> {
-            Intent result = new Intent();
-            result.putExtra("selected_background_res_id", selectedBackgroundResId);
-            setResult(RESULT_OK, result);
+            // Pass username to NamePetActivity
+            Intent next = new Intent(ChooseBackgroundActivity.this, NamePetActivity.class);
+            next.putExtra("USERNAME", username);
+            startActivity(next);
             finish();
         });
     }
