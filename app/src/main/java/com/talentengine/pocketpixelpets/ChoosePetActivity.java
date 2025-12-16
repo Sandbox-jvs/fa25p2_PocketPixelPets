@@ -135,7 +135,7 @@ public class ChoosePetActivity extends AppCompatActivity {
         }
 
         // Pass user along to next activity
-        Intent intent = new Intent(this, ChooseColorActivity.class);
+        Intent intent = new Intent(this, ChoosePetColorActivity.class);
         intent.putExtra("USERNAME", username);
         startActivity(intent);
         // Prevents going back to this activity

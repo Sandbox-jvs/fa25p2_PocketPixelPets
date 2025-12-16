@@ -1,3 +1,6 @@
+// DEPRECATED CLASS
+
+/* DEPRECATED CLASS
 package com.talentengine.pocketpixelpets;
 
 import android.content.Intent;
@@ -9,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class ChooseColorActivity extends AppCompatActivity {
 
-    private String username;
+
     private Button nextButton;
 
     @Override
@@ -32,3 +35,6 @@ public class ChooseColorActivity extends AppCompatActivity {
         finish();
     }
 }
+*/
+
+// DEPRECATED CLASS

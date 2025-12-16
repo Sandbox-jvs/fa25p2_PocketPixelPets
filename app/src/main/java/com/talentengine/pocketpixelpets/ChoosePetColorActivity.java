@@ -6,6 +6,7 @@
 
 package com.talentengine.pocketpixelpets;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -16,6 +17,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 
 public class ChoosePetColorActivity extends AppCompatActivity {
+
+    private String username;
 
     // The sprite that reflects our current pet and color
     private SpriteView variableSprite;
@@ -52,6 +55,9 @@ public class ChoosePetColorActivity extends AppCompatActivity {
         pinkButton = findViewById(R.id.pinkButton);
         nextButton = findViewById(R.id.nextButton);
         variableSprite = findViewById(R.id.petSpritePreview);
+
+        username = getIntent().getStringExtra("USERNAME");
+        nextButton.setOnClickListener(v -> goToPersonality());
 
 
         // Default select the purple button
@@ -94,6 +100,14 @@ public class ChoosePetColorActivity extends AppCompatActivity {
     }
 
 
+    private void goToPersonality() {
+        // Pass username to the next activity
+        Intent intent = new Intent(this, ChoosePersonalityActivity.class);
+        intent.putExtra("USERNAME", username);
+        startActivity(intent);
+        // Prevent going back to this activity
+        finish();
+    }
 
     /**
      * When the user selects a button, this button becomes active and all other buttons are greyed out
