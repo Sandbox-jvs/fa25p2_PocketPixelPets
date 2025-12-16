@@ -10,8 +10,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketPixelPets">
-        <activity android:name=".ChooseToyActivity"
-            android:exported="false"/>
         <activity
             android:name=".NamePetActivity"
             android:exported="false" />
