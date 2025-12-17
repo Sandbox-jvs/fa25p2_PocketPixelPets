@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.talentengine.pocketpixelpets.database.AppDatabase;
-import com.talentengine.pocketpixelpets.database.PetDao;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 import com.talentengine.pocketpixelpets.database.entities.User;
 
@@ -44,12 +43,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (verifyUser()) {
                     toastMaker("User created successfully!");
                     Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
-                    intent.putExtra("USER_ID", user.getUser_id());
+                    intent.putExtra("USER_ID", user.getUserId());
                     intent.putExtra("USERNAME", user.getUsername());
 
 
                     Pet pet = new Pet();
-                    pet.setUser_id(user.getUser_id());
+                    pet.setUser_id(user.getUserId());
                     AppDatabase.getDatabase(SignUpActivity.this).PetDao().insertPet(pet);
 
                     startActivity(intent);

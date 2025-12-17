@@ -92,7 +92,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
                 User admin = new User("admin1", "admin1");
-                admin.setIs_admin(true);
+                admin.setAdmin(true);
                 userDao.insertUser(admin);
 
                 // === Test User 1 with Otter pet===

@@ -10,8 +10,6 @@ import static org.junit.Assert.assertNotEquals;
 
 import junit.framework.TestCase;
 
-import org.junit.Test;
-
 public class UserTest extends TestCase {
     String username1 = "Username";
     String password1 = "Password";
@@ -28,10 +26,10 @@ public class UserTest extends TestCase {
 
 
     public void testIsAdmin() {
-        admin.setIs_admin(true);
+        admin.setAdmin(true);
 
-        assertTrue(admin.isIs_admin());
-        assertFalse(user1.isIs_admin());
+        assertTrue(admin.isAdmin());
+        assertFalse(user1.isAdmin());
         assertNotEquals(user1, admin);
     }
 }

@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity(tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)
-    private int user_id;
+    private int userId;
     /**
      * The saved password of the user
      */
@@ -38,7 +38,7 @@ public class User {
      * An overloaded constructor is not available, so the user must be declared admin after
      * creation.
      */
-    private boolean is_admin = false;
+    private boolean isAdmin = false;
 
     public User(){}
 
@@ -64,16 +64,16 @@ public class User {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return user_id == user.user_id && is_admin == user.is_admin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
+        return userId == user.userId && isAdmin == user.isAdmin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, password, created_at, username, is_admin);
+        return Objects.hash(userId, password, created_at, username, isAdmin);
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
@@ -96,16 +96,16 @@ public class User {
         this.username = username;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public boolean isIs_admin() {
-        return is_admin;
+    public boolean isAdmin() {
+        return isAdmin;
     }
 
-    public void setIs_admin(boolean is_admin) {
-        this.is_admin = is_admin;
+    public void setAdmin(boolean admin) {
+        this.isAdmin = admin;
     }
 
 }
