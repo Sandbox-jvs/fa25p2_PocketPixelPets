@@ -102,4 +102,20 @@ public class NamePetActivity extends AppCompatActivity {
             }
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (petPreview != null) {
+            petPreview.start();
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (petPreview != null) {
+            petPreview.stop();
+        }
+    }
 }
