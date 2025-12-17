@@ -10,6 +10,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Entity(tableName = "actions")
 public class Action {
@@ -68,5 +69,17 @@ public class Action {
 
     public int getPet_id() {
         return pet_id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        Action action = (Action) o;
+        return action_id == action.action_id && pet_id == action.pet_id && Objects.equals(action_type, action.action_type) && Objects.equals(created_at, action.created_at);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(action_id, pet_id, action_type, created_at);
     }
 }

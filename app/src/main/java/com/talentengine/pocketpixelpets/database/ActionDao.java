@@ -36,7 +36,7 @@ public interface ActionDao {
      * @param petId the identifier of the pet
      * @return A list of the three newest actions
      */
-    @Query("SELECT * FROM actions WHERE pet_id = :petId ORDER BY created_at DESC LIMIT 3")
+    @Query("SELECT * FROM actions WHERE pet_id = :petId ORDER BY action_id DESC LIMIT 3")
     List<Action> getLastThreeActionsFromPetId(int petId);
 
     /**

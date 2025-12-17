@@ -16,9 +16,12 @@ import com.talentengine.pocketpixelpets.database.ActionDao;
 import com.talentengine.pocketpixelpets.database.AppDatabase;
 import com.talentengine.pocketpixelpets.database.entities.Action;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
@@ -28,10 +31,10 @@ public class ActionDaoTest {
     private ActionDao actionDao;
     private final int testPetId = 42;
 
-    private final Action testAction1 = new Action("action 1", testPetId);
-    private final  Action testAction2 = new Action("action 2", testPetId);
-    private final  Action testAction3 = new Action("action 3", testPetId);
-    private final  Action testAction4 = new Action("action 4", testPetId);
+    private Action testAction1;
+    private Action testAction2;
+    private Action testAction3;
+    private Action testAction4;
 
 
     // In order to test the database, we need to get an application context first
@@ -48,8 +51,13 @@ public class ActionDaoTest {
     }
 
     @Test
-    public void testGetLastThreeActionsFromPetId() {
+    public void testGetLastThreeActionsFromPetId() throws InterruptedException {
         // Make and insert three custom actions
+        testAction1 = new Action("action 1", testPetId);
+        testAction2 = new Action("action 2", testPetId);
+        testAction3 = new Action("action 3", testPetId);
+        testAction4 = new Action("action 4", testPetId);
+
         actionDao.insertAction(testAction1);
         actionDao.insertAction(testAction2);
         actionDao.insertAction(testAction3);
@@ -60,11 +68,16 @@ public class ActionDaoTest {
         assertEquals(3, actions.size());
 
         // Action 4 should be the newest action, then 3, then 2
-        assertEquals(testAction4, actions.get(0));
-        assertEquals(testAction3, actions.get(1));
-        assertEquals(testAction2, actions.get(2));
+        assertEquals("action 4", actions.get(0).getAction_type());
+        assertEquals("action 3", actions.get(1).getAction_type());
+        assertEquals("action 2", actions.get(2).getAction_type());
     }
 
     public void testDeleteActionsFromPetId() {
+    }
+
+    @After
+    public void closeDatabase() {
+        database.close();
     }
 }
