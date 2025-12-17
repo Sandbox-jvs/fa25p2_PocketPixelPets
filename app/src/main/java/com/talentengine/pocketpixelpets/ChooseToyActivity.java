@@ -35,6 +35,8 @@ public class ChooseToyActivity extends AppCompatActivity {
         stickCard = findViewById(R.id.stickButton);
         bubbleWandCard = findViewById(R.id.bubbleWandButton);
 
+        dimToyCards();
+
         // Wire the click listeners for the toy option views
         ballCard.setOnClickListener(v -> {
             selectedToy = "Ball";
