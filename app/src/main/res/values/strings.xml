@@ -27,4 +27,6 @@
     <string name="blue">Blue</string>
     <string name="mint">Mint</string>
     <string name="purple">Purple</string>
+    <string name="clean_freak">Clean Freak</string>
+    <string name="stays_clean_for_longer">Stays clean for longer.</string>
 </resources>
