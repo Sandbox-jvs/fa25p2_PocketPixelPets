@@ -42,6 +42,21 @@ public class GamePlayActivity extends AppCompatActivity {
     private TextView btnPlay;
     private TextView btnBathe;
 
+    private TextView tvStatusMessage;
+
+    private static final int MAX_STAT = 5;
+    private static final int MIN_STAT = 0;
+
+    // Cool downs
+    private static final long FEED_COOLDOWN_MS = 2 * 60 * 1000; // 2 minutes
+    private static final long BATHE_COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes
+
+    private static final int MAX_STAMINA = 3;
+    private int stamina = MAX_STAMINA;
+
+    private long lastFeedTime = 0L;
+    private long lastBatheTime = 0L;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -96,12 +111,18 @@ public class GamePlayActivity extends AppCompatActivity {
         btnFood = findViewById(R.id.btnFood);
         btnPlay = findViewById(R.id.btnPlay);
         btnBathe = findViewById(R.id.btnBathe);
+
+        tvStatusMessage = findViewById(R.id.tvStatusMessage);
     }
 
     private void setupButtonListeners() {
         btnFood.setOnClickListener(v -> onFeedClicked());
         btnPlay.setOnClickListener(v -> onPlayClicked());
         btnBathe.setOnClickListener(v -> onBatheClicked());
+    }
+
+    private void showStatus(String Message) {
+        tvStatusMessage.setText(Message);
     }
 
     /**
@@ -118,7 +139,11 @@ public class GamePlayActivity extends AppCompatActivity {
                 }
                 setupPetSprite();
                 setupBackground();
+
+                updateMetersUI();
                 updateActionButtons();
+
+                showStatus("Welcome back, " + username + "!");
             });
         }).start();
     }
@@ -270,7 +295,6 @@ public class GamePlayActivity extends AppCompatActivity {
 
         btnFood.setText(foodEmoji);
         btnPlay.setText(toyEmoji);
-
     }
 
     private String getFoodEmoji(String food) {
@@ -307,22 +331,126 @@ public class GamePlayActivity extends AppCompatActivity {
         }
     }
 
+
     private void onFeedClicked() {
         if (pet == null) return;
-        //TODO: Implement feed action
-        Toast.makeText(GamePlayActivity.this, "Feed to be implemented soon!", Toast.LENGTH_SHORT).show();
+
+        long now = System.currentTimeMillis();
+        if (now - lastFeedTime < FEED_COOLDOWN_MS) {
+            long remainingSec = (FEED_COOLDOWN_MS - (now - lastFeedTime)) / 1000;
+            showStatus("You can feed again in " + remainingSec + "s.");
+            return;
+        }
+
+        int hunger = pet.getHunger();
+        int happiness = pet.getHappiness();
+
+        if (hunger >= MAX_STAT) {
+            // Overfeeding penalty: happiness -1
+            pet.setHappiness(Math.max(MIN_STAT, happiness - 1));
+            showStatus("Your pet is too full!");
+        } else {
+            // Hunger +1 (max 5), small happiness +1
+            hunger = Math.min(MAX_STAT, hunger + 1);
+            happiness = Math.min(MAX_STAT, happiness + 1);
+            pet.setHunger(hunger);
+            pet.setHappiness(happiness);
+            showStatus("Nom nom!");
+        }
+
+        lastFeedTime = now;
+
+        updateMetersUI();
+        updateActionButtons();
+        savePetAsync();
     }
 
     private void onPlayClicked() {
         if (pet == null) return;
-        //TODO: Implement play action
-        Toast.makeText(GamePlayActivity.this, "Play to be implemented soon!", Toast.LENGTH_SHORT).show();
+
+        // If hunger <= 1, Play is disabled
+        if (pet.getHunger() <= 1) {
+            showStatus("Your pet is too hungry to play!");
+            return;
+        }
+
+        if (stamina <= 0) {
+            showStatus("Your pet is too tired to play more!");
+            return;
+        }
+
+        int happiness = pet.getHappiness();
+        int hunger = pet.getHunger();
+        int hygiene = pet.getHygiene();
+
+        // Action effect:
+        // Happiness +1
+        // Hunger −1
+        // Hygiene −1
+        happiness = Math.min(MAX_STAT, happiness + 1);
+        hunger = Math.max(MIN_STAT, hunger - 1);
+        hygiene = Math.max(MIN_STAT, hygiene - 1);
+
+        pet.setHappiness(happiness);
+        pet.setHunger(hunger);
+        pet.setHygiene(hygiene);
+
+        stamina--;
+
+        showStatus("Playtime!");
+
+        updateMetersUI();
+        updateActionButtons();
+        savePetAsync();
     }
 
     private void onBatheClicked() {
         if (pet == null) return;
-        //TODO: Implement bathe action
-        Toast.makeText(GamePlayActivity.this, "Bathe to be implemented soon!", Toast.LENGTH_SHORT).show();
+
+        long now = System.currentTimeMillis();
+        if (now - lastBatheTime < BATHE_COOLDOWN_MS) {
+            long remainingSec = (BATHE_COOLDOWN_MS - (now - lastBatheTime)) / 1000;
+            showStatus("You can bathe again in " + remainingSec + "s.");
+            return;
+        }
+
+        int hygiene = pet.getHygiene();
+        int happiness = pet.getHappiness();
+
+        // If hygiene is already at 4 or 5, bathing reduces Happiness -1
+        if (hygiene >= 4) {
+            happiness = Math.max(MIN_STAT, happiness - 1);
+            pet.setHappiness(happiness);
+            showStatus("I'm already clean!");
+        } else {
+            hygiene = Math.min(MAX_STAT, hygiene + 3);
+            pet.setHygiene(hygiene);
+            showStatus("Squeaky clean!");
+        }
+
+        lastBatheTime = now;
+
+        updateMetersUI();
+        updateActionButtons();
+        savePetAsync();
+    }
+
+    private void updateMetersUI() {
+        if (pet == null) return;
+        updateSquaresForStat(happinessSquares, pet.getHappiness());
+        updateSquaresForStat(hungerSquares, pet.getHunger());
+        updateSquaresForStat(hygieneSquares, pet.getHygiene());
+    }
+
+    private void updateSquaresForStat(View[] squares, int value) {
+        for (int i = 0; i < squares.length; i++) {
+            if (squares[i] == null) continue;
+            squares[i].setAlpha(i < value ? 1.0f : 0.2f);
+        }
+    }
+
+    private void savePetAsync() {
+        new Thread(() -> petDao.updatePet(pet)).start();
     }
 
     @Override
