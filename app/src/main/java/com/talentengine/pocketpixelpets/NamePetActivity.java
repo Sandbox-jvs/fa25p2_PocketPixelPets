@@ -42,6 +42,7 @@ public class NamePetActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (savePetName()) {
                     Toast.makeText(NamePetActivity.this, "You named your pet: " + petNameInput.getText().toString(), Toast.LENGTH_SHORT).show();
+                    goToNextStep();
                 }
             }
         });
@@ -63,6 +64,11 @@ public class NamePetActivity extends AppCompatActivity {
     }
 
     private void goToNextStep() {
-        Toast.makeText(this, "Pet naming feature coming soon!", Toast.LENGTH_SHORT).show();
+        int user_id = getIntent().getIntExtra("USER_ID", -1);
+        Intent intent = new Intent(NamePetActivity.this, GamePlayActivity.class);
+        intent.putExtra("USER_ID", user_id);
+        intent.putExtra("USERNAME", username);
+        startActivity(intent);
+        finish();
     }
 }
