@@ -85,6 +85,7 @@ public class ChooseToyActivity extends AppCompatActivity {
                 plushieCard.setAlpha(FULL_ALPHA);
                 break;
             case "Stick":
+                stickCard.setAlpha(FULL_ALPHA);
                 break;
             case "Bubble Wand":
                 bubbleWandCard.setAlpha(FULL_ALPHA);
