@@ -16,6 +16,9 @@
       <SelectionState runConfigName="testGetLastThreeActionsFromPetId()">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="testDeleteActionsFromPetId()">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>
