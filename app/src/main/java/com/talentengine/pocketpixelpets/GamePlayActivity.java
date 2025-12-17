@@ -15,14 +15,17 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.talentengine.pocketpixelpets.database.ActionDao;
 import com.talentengine.pocketpixelpets.database.AppDatabase;
 import com.talentengine.pocketpixelpets.database.PetDao;
+import com.talentengine.pocketpixelpets.database.entities.Action;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 
 public class GamePlayActivity extends AppCompatActivity {
 
     private AppDatabase database;
     private PetDao petDao;
+    private ActionDao actionDao;
 
     private int userId = -1;
     private String username;
@@ -67,6 +70,7 @@ public class GamePlayActivity extends AppCompatActivity {
 
         database = AppDatabase.getDatabase(this);
         petDao = database.PetDao();
+        actionDao = database.actionDao();
 
         Intent intent = getIntent();
         userId = intent.getIntExtra("USER_ID", -1);
@@ -363,6 +367,7 @@ public class GamePlayActivity extends AppCompatActivity {
         updateMetersUI();
         updateActionButtons();
         savePetAsync();
+        logAction("feed");
     }
 
     private void onPlayClicked() {
@@ -402,6 +407,7 @@ public class GamePlayActivity extends AppCompatActivity {
         updateMetersUI();
         updateActionButtons();
         savePetAsync();
+        logAction("play");
     }
 
     private void onBatheClicked() {
@@ -433,6 +439,7 @@ public class GamePlayActivity extends AppCompatActivity {
         updateMetersUI();
         updateActionButtons();
         savePetAsync();
+        logAction("bathe");
     }
 
     private void updateMetersUI() {
@@ -499,6 +506,19 @@ public class GamePlayActivity extends AppCompatActivity {
             }
         });
         return true;
+    }
+
+    private void logAction(String actionType) {
+        if (pet == null) return;
+
+        // Assuming Pet has getPet_id()
+        int petId = pet.getPet_id();
+
+        Action action = new Action(actionType, petId);
+
+        new Thread(() -> {
+            actionDao.insertAction(action);
+        }).start();
     }
 
     /**
