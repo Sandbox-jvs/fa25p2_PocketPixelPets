@@ -26,6 +26,7 @@ public class NamePetActivity extends AppCompatActivity {
     private String username;
     private MaterialButton nextButton;
     private SpriteView petPreview;
+    private int user_id = -1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class NamePetActivity extends AppCompatActivity {
         nextButton   = findViewById(R.id.nextButtonName);
         petNameInput = findViewById(R.id.petNameInput);
         petPreview   = findViewById(R.id.petPreview);
+
+        loadPetPreview();
 
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,8 +59,6 @@ public class NamePetActivity extends AppCompatActivity {
             return false;
         }
 
-        int user_id = getIntent().getIntExtra("USER_ID", -1);
-
         Pet pet = AppDatabase.getDatabase(NamePetActivity.this).PetDao().getPetFromOwnerUserId(user_id);
         pet.setName(petName);
         AppDatabase.getDatabase(NamePetActivity.this).PetDao().updatePet(pet);
@@ -65,7 +66,6 @@ public class NamePetActivity extends AppCompatActivity {
     }
 
     private void goToNextStep() {
-        int user_id = getIntent().getIntExtra("USER_ID", -1);
         Intent intent = new Intent(NamePetActivity.this, GamePlayActivity.class);
         intent.putExtra("USER_ID", user_id);
         intent.putExtra("USERNAME", username);
@@ -82,5 +82,24 @@ public class NamePetActivity extends AppCompatActivity {
         intent.putExtra("USERNAME", username);
         intent.putExtra("USER_ID", user_id);
         return intent;
+    }
+
+    private void loadPetPreview() {
+        Pet pet = AppDatabase.getDatabase(NamePetActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+        if (pet != null && petPreview != null) {
+            String petType = pet.getPet_type();
+            String petColor = pet.getPet_color();
+
+            if (petType != null && petColor != null) {
+
+                int resId = getResources().getIdentifier(petType + "_sprite_sheet_" + petColor, "drawable", getPackageName());
+
+                if (resId != 0) {
+                    petPreview.setSpriteSheet(resId, 2, 3);
+                    petPreview.setFrameDuration(1500);
+                    petPreview.start();
+                }
+            }
+        }
     }
 }
