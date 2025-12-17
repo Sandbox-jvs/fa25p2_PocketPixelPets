@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
 
         usernameInput = findViewById(R.id.usernameInput);
         passwordInput = findViewById(R.id.passwordInput);
-        loginButton   = findViewById(R.id.loginButton);
+        loginButton = findViewById(R.id.loginButton);
 
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,12 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                         intent = new Intent(LoginActivity.this, AdminActivity.class);
                     } else {
                         intent = new Intent(LoginActivity.this, GamePlayActivity.class);
-                        intent.putExtra("USER_ID", user.getUserId());
-                        intent.putExtra("USERNAME", user.getUsername());
-                        startActivity(intent);
-                        finish();
-                        overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                     }
+
+                    intent.putExtra("USER_ID", user.getUserId());
+                    intent.putExtra("USERNAME", user.getUsername());
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
                 }
             }
         });
