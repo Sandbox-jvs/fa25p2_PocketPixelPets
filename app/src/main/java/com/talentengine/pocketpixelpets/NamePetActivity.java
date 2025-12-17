@@ -16,6 +16,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
 
 public class NamePetActivity extends AppCompatActivity {
 
@@ -38,9 +40,26 @@ public class NamePetActivity extends AppCompatActivity {
         nextButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(NamePetActivity.this, "You named your pet: " + petNameInput.getText().toString(), Toast.LENGTH_SHORT).show();
+                if (savePetName()) {
+                    Toast.makeText(NamePetActivity.this, "You named your pet: " + petNameInput.getText().toString(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
+    }
+
+    private boolean savePetName() {
+        String petName = petNameInput.getText().toString();
+        if (petName.isEmpty()) {
+            Toast.makeText(this, "Pet name cannot be empty!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        int user_id = getIntent().getIntExtra("USER_ID", -1);
+
+        Pet pet = AppDatabase.getDatabase(NamePetActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+        pet.setName(petName);
+        AppDatabase.getDatabase(NamePetActivity.this).PetDao().updatePet(pet);
+        return true;
     }
 
     private void goToNextStep() {
