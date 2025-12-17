@@ -27,4 +27,9 @@
     <string name="blue">Blue</string>
     <string name="mint">Mint</string>
     <string name="purple">Purple</string>
+    <string name="you_can_t_change_this_later_so_choose_carefully">You can\'t change this later, so choose carefully!</string>
+    <string name="enter_pet_name">Enter pet name...</string>
+    <string name="pet_name">Pet name</string>
+    <string name="give_your_new_friend_a_special_name">Give your new friend a special name!</string>
+    <string name="name_your_pet">Name Your Pet</string>
 </resources>
