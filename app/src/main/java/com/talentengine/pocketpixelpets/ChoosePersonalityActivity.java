@@ -115,7 +115,8 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
                 break;
         }
     }
-    private void goToNextStep() {
+
+private void goToNextStep() {
     // Get User ID from last activity
     Intent lastIntent = getIntent();
     int user_id = lastIntent.getIntExtra("USER_ID", -1);
