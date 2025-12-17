@@ -5,6 +5,7 @@
  */
 package com.talentengine.pocketpixelpets;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -41,7 +42,7 @@ public class NamePetActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (savePetName()) {
-                    Toast.makeText(NamePetActivity.this, "You named your pet: " + petNameInput.getText().toString(), Toast.LENGTH_SHORT).show();
+                    toastMaker("Pet name successfully!");
                     goToNextStep();
                 }
             }
@@ -51,7 +52,7 @@ public class NamePetActivity extends AppCompatActivity {
     private boolean savePetName() {
         String petName = petNameInput.getText().toString();
         if (petName.isEmpty()) {
-            Toast.makeText(this, "Pet name cannot be empty!", Toast.LENGTH_SHORT).show();
+            toastMaker("Pet name cannot be empty!");
             return false;
         }
 
@@ -70,5 +71,16 @@ public class NamePetActivity extends AppCompatActivity {
         intent.putExtra("USERNAME", username);
         startActivity(intent);
         finish();
+    }
+
+    private void toastMaker(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    static Intent namePetActivityIntent(Context context, String username, int user_id) {
+        Intent intent = new Intent(context, NamePetActivity.class);
+        intent.putExtra("USERNAME", username);
+        intent.putExtra("USER_ID", user_id);
+        return intent;
     }
 }
