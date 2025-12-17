@@ -24,9 +24,14 @@ public class ChooseFoodActivity extends AppCompatActivity {
     }
 
     private void goToNextStep() {
+        //Get user id from last activity
+        Intent lastIntent = getIntent();
+        int user_id = lastIntent.getIntExtra("USER_ID", -1  );
+
         // Pass username to the Choose Toy Activity
         Intent intent = new Intent(this, ChooseToyActivity.class);
         intent.putExtra("USERNAME", username);
+        intent.putExtra("USER_ID", user_id);
         startActivity(intent);
         finish();
     }

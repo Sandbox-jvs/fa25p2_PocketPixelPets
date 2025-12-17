@@ -9,6 +9,9 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
+
 public class ChooseToyActivity extends AppCompatActivity {
 
     private String username;
@@ -60,7 +63,10 @@ public class ChooseToyActivity extends AppCompatActivity {
         });
 
         nextButton = findViewById(R.id.nextButtonToy);
-        nextButton.setOnClickListener(v -> goToNextStep());
+        nextButton.setOnClickListener(v -> {
+                if (selectedToy == null) { return; }
+                goToNextStep();
+        });
 
     }
 
@@ -96,9 +102,19 @@ public class ChooseToyActivity extends AppCompatActivity {
     }
 
     private void goToNextStep() {
+        //Get user id from last activity
+        Intent lastIntent = getIntent();
+        int user_id = lastIntent.getIntExtra("USER_ID", -1  );
+
+        //Update Pet in the database
+        Pet pet = AppDatabase.getDatabase(ChooseToyActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+        pet.setPet_toy(selectedToy);
+        AppDatabase.getDatabase(ChooseToyActivity.this).PetDao().updatePet(pet);
+
         // Pass username to the Choose background Activity
-        Intent intent = new Intent(this, ChooseBackgroundActivity.class);
+        Intent intent = new Intent(ChooseToyActivity.this, ChooseBackgroundActivity.class);
         intent.putExtra("USERNAME", username);
+        intent.putExtra("USER_ID", user_id);
         startActivity(intent);
         finish();
     }
