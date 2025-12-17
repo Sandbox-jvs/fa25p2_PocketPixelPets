@@ -126,8 +126,8 @@ private void goToNextStep() {
     pet.setPet_personality(selectedPersonality);
     AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().updatePet(pet);
 
-    // Pass username to NamePetActivity
-    Intent next = new Intent(ChoosePersonalityActivity.this, NamePetActivity.class);
+    // Pass username to ChooseFoodActivity
+    Intent next = new Intent(ChoosePersonalityActivity.this, ChooseFoodActivity.class);
     next.putExtra("USERNAME", username);
     next.putExtra("USER_ID", user_id);
     startActivity(next);
