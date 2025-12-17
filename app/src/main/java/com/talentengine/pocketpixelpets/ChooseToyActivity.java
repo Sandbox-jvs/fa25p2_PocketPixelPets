@@ -9,15 +9,20 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.entities.Pet;
+
 public class ChooseToyActivity extends AppCompatActivity {
 
     private String username;
     private Button nextButton;
 
-    private View ballButton;
-    private View plushieButton;
-    private View stickButton;
-    private View bubbleWandButton;
+    private View ballCard;
+    private View plushieCard;
+    private View stickCard;
+    private View bubbleWandCard;
+    private static final float FULL_ALPHA = 1.0f;
+    private static final float DIMMED_ALPHA = 0.3f;
     private String selectedToy = null;
 
 
@@ -28,38 +33,88 @@ public class ChooseToyActivity extends AppCompatActivity {
 
         username = getIntent().getStringExtra("USERNAME");
         // Reference to the card views inside toy xml
-        ballButton = findViewById(R.id .ballButton);
-        plushieButton = findViewById(R.id .plushieButton);
-        stickButton = findViewById(R.id .stickButton);
-        bubbleWandButton = findViewById(R.id .bubbleWandButton);
+        ballCard = findViewById(R.id.ballButton);
+        plushieCard = findViewById(R.id.plushieButton);
+        stickCard = findViewById(R.id.stickButton);
+        bubbleWandCard = findViewById(R.id.bubbleWandButton);
+
+        dimToyCards();
 
         // Wire the click listeners for the toy option views
-        ballButton.setOnClickListener(v -> {
+        ballCard.setOnClickListener(v -> {
             selectedToy = "Ball";
+            onSelectedToy();
             Toast.makeText(this, "Boing! Boing!", Toast.LENGTH_SHORT).show();
                 });
-        plushieButton.setOnClickListener(v -> {
+        plushieCard.setOnClickListener(v -> {
             selectedToy = "Plushie";
+            onSelectedToy();
             Toast.makeText(this, "So soft... Or chewy!", Toast.LENGTH_SHORT).show();
         });
-        stickButton.setOnClickListener(v -> {
+        stickCard.setOnClickListener(v -> {
             selectedToy = "Stick";
+            onSelectedToy();
             Toast.makeText(this, "Organic choice!", Toast.LENGTH_SHORT).show();
         });
-        bubbleWandButton.setOnClickListener(v -> {
+        bubbleWandCard.setOnClickListener(v -> {
             selectedToy = "Bubble Wand";
+            onSelectedToy();
             Toast.makeText(this, "Look at all the bubbles!", Toast.LENGTH_SHORT).show();
         });
 
         nextButton = findViewById(R.id.nextButtonToy);
-        nextButton.setOnClickListener(v -> goToNextStep());
+        nextButton.setOnClickListener(v -> {
+                if (selectedToy == null) { return; }
+                goToNextStep();
+        });
 
     }
 
+    /**
+     * Dim all the selectable toy cards
+     */
+    private void dimToyCards(){
+        ballCard.setAlpha(DIMMED_ALPHA);
+        plushieCard.setAlpha(DIMMED_ALPHA);
+        stickCard.setAlpha(DIMMED_ALPHA);
+        bubbleWandCard.setAlpha(DIMMED_ALPHA);
+    }
+
+    /**
+     * Return the selected to full opacity
+     */
+    private void onSelectedToy(){
+        dimToyCards();
+        switch (selectedToy) {
+            case "Ball":
+                ballCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Plushie":
+                plushieCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Stick":
+                stickCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Bubble Wand":
+                bubbleWandCard.setAlpha(FULL_ALPHA);
+                break;
+        }
+    }
+
     private void goToNextStep() {
+        //Get user id from last activity
+        Intent lastIntent = getIntent();
+        int user_id = lastIntent.getIntExtra("USER_ID", -1  );
+
+        //Update Pet in the database
+        Pet pet = AppDatabase.getDatabase(ChooseToyActivity.this).PetDao().getPetFromOwnerUserId(user_id);
+        pet.setPet_toy(selectedToy);
+        AppDatabase.getDatabase(ChooseToyActivity.this).PetDao().updatePet(pet);
+
         // Pass username to the Choose background Activity
-        Intent intent = new Intent(this, ChooseBackgroundActivity.class);
+        Intent intent = new Intent(ChooseToyActivity.this, ChooseBackgroundActivity.class);
         intent.putExtra("USERNAME", username);
+        intent.putExtra("USER_ID", user_id);
         startActivity(intent);
         finish();
     }

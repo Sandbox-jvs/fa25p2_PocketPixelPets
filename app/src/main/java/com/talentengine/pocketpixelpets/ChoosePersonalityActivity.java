@@ -124,6 +124,8 @@ private void goToNextStep() {
     // Update the Pet in the database
     Pet pet = AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().getPetFromOwnerUserId(user_id);
     pet.setPet_personality(selectedPersonality);
+    // Apply default stats depending on the selected personality
+    personalityStats(pet);
     AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().updatePet(pet);
 
     // Pass username to ChooseFoodActivity
@@ -132,5 +134,30 @@ private void goToNextStep() {
     next.putExtra("USER_ID", user_id);
     startActivity(next);
     finish();
-}
+    }
+
+    private void personalityStats(Pet pet) {
+        switch (selectedPersonality) {
+            case "Cheerful":
+                pet.setHunger(3);
+                pet.setHappiness(5);
+                pet.setHygiene(2);
+                break;
+            case "Lazy":
+                pet.setHunger(3);
+                pet.setHappiness(3);
+                pet.setHygiene(3);
+                break;
+            case "Playful":
+                pet.setHunger(3);
+                pet.setHappiness(4);
+                pet.setHygiene(3);
+                break;
+            case "Clean Freak":
+                pet.setHunger(3);
+                pet.setHappiness(3);
+                pet.setHygiene(5);
+                break;
+        }
+    }
 }
