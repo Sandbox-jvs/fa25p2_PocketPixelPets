@@ -73,7 +73,25 @@ public class ActionDaoTest {
         assertEquals("action 2", actions.get(2).getAction_type());
     }
 
+    @Test
     public void testDeleteActionsFromPetId() {
+        // Add 4 actions to our pet
+        testAction1 = new Action("action 1", testPetId);
+        testAction2 = new Action("action 2", testPetId);
+        testAction3 = new Action("action 3", testPetId);
+        testAction4 = new Action("action 4", testPetId);
+
+        actionDao.insertAction(testAction1);
+        actionDao.insertAction(testAction2);
+        actionDao.insertAction(testAction3);
+        actionDao.insertAction(testAction4);
+
+        // Delete the actions for the pet
+        actionDao.deleteActionsFromPetId(testPetId);
+
+        // Ensure that retrieving the actions returns an empty list
+        assertEquals(0, actionDao.getActionsFromPetId(testPetId).size());
+
     }
 
     @After
