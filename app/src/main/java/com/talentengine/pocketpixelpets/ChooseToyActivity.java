@@ -14,10 +14,12 @@ public class ChooseToyActivity extends AppCompatActivity {
     private String username;
     private Button nextButton;
 
-    private View ballButton;
-    private View plushieButton;
-    private View stickButton;
-    private View bubbleWandButton;
+    private View ballCard;
+    private View plushieCard;
+    private View stickCard;
+    private View bubbleWandCard;
+    private static final float FULL_ALPHA = 1.0f;
+    private static final float DIMMED_ALPHA = 0.3f;
     private String selectedToy = null;
 
 
@@ -28,25 +30,25 @@ public class ChooseToyActivity extends AppCompatActivity {
 
         username = getIntent().getStringExtra("USERNAME");
         // Reference to the card views inside toy xml
-        ballButton = findViewById(R.id .ballButton);
-        plushieButton = findViewById(R.id .plushieButton);
-        stickButton = findViewById(R.id .stickButton);
-        bubbleWandButton = findViewById(R.id .bubbleWandButton);
+        ballCard = findViewById(R.id.ballButton);
+        plushieCard = findViewById(R.id.plushieButton);
+        stickCard = findViewById(R.id.stickButton);
+        bubbleWandCard = findViewById(R.id.bubbleWandButton);
 
         // Wire the click listeners for the toy option views
-        ballButton.setOnClickListener(v -> {
+        ballCard.setOnClickListener(v -> {
             selectedToy = "Ball";
             Toast.makeText(this, "Boing! Boing!", Toast.LENGTH_SHORT).show();
                 });
-        plushieButton.setOnClickListener(v -> {
+        plushieCard.setOnClickListener(v -> {
             selectedToy = "Plushie";
             Toast.makeText(this, "So soft... Or chewy!", Toast.LENGTH_SHORT).show();
         });
-        stickButton.setOnClickListener(v -> {
+        stickCard.setOnClickListener(v -> {
             selectedToy = "Stick";
             Toast.makeText(this, "Organic choice!", Toast.LENGTH_SHORT).show();
         });
-        bubbleWandButton.setOnClickListener(v -> {
+        bubbleWandCard.setOnClickListener(v -> {
             selectedToy = "Bubble Wand";
             Toast.makeText(this, "Look at all the bubbles!", Toast.LENGTH_SHORT).show();
         });
@@ -55,6 +57,14 @@ public class ChooseToyActivity extends AppCompatActivity {
         nextButton.setOnClickListener(v -> goToNextStep());
 
     }
+
+    private void dimToyCards(){
+        ballCard.setAlpha(DIMMED_ALPHA);
+        plushieCard.setAlpha(DIMMED_ALPHA);
+        stickCard.setAlpha(DIMMED_ALPHA);
+        bubbleWandCard.setAlpha(DIMMED_ALPHA);
+    }
+    private void onSelectedToy(){}
 
     private void goToNextStep() {
         // Pass username to the Choose background Activity
