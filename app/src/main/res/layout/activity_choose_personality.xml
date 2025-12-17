@@ -2,9 +2,9 @@
 
 <!-- Author: Jessica Sandoval -->
 
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9FFF6">
@@ -52,6 +52,7 @@
         android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
+        app:rippleColor="@android:color/transparent"
         app:cardCornerRadius="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/personalitySubtitleTextView"
@@ -97,6 +98,7 @@
         android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
+        app:rippleColor="@android:color/transparent"
         app:cardCornerRadius="18dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/cheerfulButton"
@@ -143,6 +145,7 @@
         android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
+        app:rippleColor="@android:color/transparent"
         app:cardCornerRadius="18dp"
         app:layout_constraintStart_toStartOf="@+id/cheerfulButton"
         app:layout_constraintTop_toBottomOf="@id/cheerfulButton"
@@ -188,6 +191,7 @@
         android:layout_marginTop="24dp"
         android:clickable="true"
         android:focusable="true"
+        app:rippleColor="@android:color/transparent"
         app:cardCornerRadius="18dp"
         app:layout_constraintStart_toStartOf="@+id/lazyButton"
         app:layout_constraintTop_toBottomOf="@id/cheerfulButton"
