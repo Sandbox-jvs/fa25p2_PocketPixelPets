@@ -38,18 +38,22 @@ public class ChooseToyActivity extends AppCompatActivity {
         // Wire the click listeners for the toy option views
         ballCard.setOnClickListener(v -> {
             selectedToy = "Ball";
+            onSelectedToy();
             Toast.makeText(this, "Boing! Boing!", Toast.LENGTH_SHORT).show();
                 });
         plushieCard.setOnClickListener(v -> {
             selectedToy = "Plushie";
+            onSelectedToy();
             Toast.makeText(this, "So soft... Or chewy!", Toast.LENGTH_SHORT).show();
         });
         stickCard.setOnClickListener(v -> {
             selectedToy = "Stick";
+            onSelectedToy();
             Toast.makeText(this, "Organic choice!", Toast.LENGTH_SHORT).show();
         });
         bubbleWandCard.setOnClickListener(v -> {
             selectedToy = "Bubble Wand";
+            onSelectedToy();
             Toast.makeText(this, "Look at all the bubbles!", Toast.LENGTH_SHORT).show();
         });
 
@@ -58,13 +62,35 @@ public class ChooseToyActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Dim all the selectable toy cards
+     */
     private void dimToyCards(){
         ballCard.setAlpha(DIMMED_ALPHA);
         plushieCard.setAlpha(DIMMED_ALPHA);
         stickCard.setAlpha(DIMMED_ALPHA);
         bubbleWandCard.setAlpha(DIMMED_ALPHA);
     }
-    private void onSelectedToy(){}
+
+    /**
+     * Return the selected to full opacity
+     */
+    private void onSelectedToy(){
+        dimToyCards();
+        switch (selectedToy) {
+            case "Ball":
+                ballCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Plushie":
+                plushieCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Stick":
+                break;
+            case "Bubble Wand":
+                bubbleWandCard.setAlpha(FULL_ALPHA);
+                break;
+        }
+    }
 
     private void goToNextStep() {
         // Pass username to the Choose background Activity
