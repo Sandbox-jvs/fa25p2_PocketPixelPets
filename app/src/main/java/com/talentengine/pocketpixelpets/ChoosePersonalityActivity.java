@@ -48,10 +48,10 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
         dimmedPersonalityCard();
 
 
-        //Wire up with intents
+        //Wire the next button and view cards
         nextButtonPersonality.setOnClickListener(v -> {
             if (selectedPersonality == null) {
-                Toast.makeText(this, "Oops! Please select a personality for your pet!", Toast.LENGTH_SHORT).show();
+                return;
             }
 
             goToNextStep();
@@ -59,25 +59,36 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
 
         lazyCard.setOnClickListener(v -> {
             selectedPersonality = "Lazy";
+            onSelectedPersonality();
             nextButtonPersonality.setEnabled(true);
+            nextButtonPersonality.setAlpha(FULL_ALPHA);
         });
 
         playfulCard.setOnClickListener(v -> {
             selectedPersonality = "Playful";
+            onSelectedPersonality();
             nextButtonPersonality.setEnabled(true);
+            nextButtonPersonality.setAlpha(FULL_ALPHA);
         });
 
         cleanFreakCard.setOnClickListener(v -> {
             selectedPersonality = "Clean Freak";
+            onSelectedPersonality();
             nextButtonPersonality.setEnabled(true);
+            nextButtonPersonality.setAlpha(FULL_ALPHA);
         });
 
         cheerfulCard.setOnClickListener(v -> {
             selectedPersonality = "Cheerful";
+            onSelectedPersonality();
             nextButtonPersonality.setEnabled(true);
+            nextButtonPersonality.setAlpha(FULL_ALPHA);
         });
     }
 
+    /**
+     * This method will take all of the cards and lower the opacity so the view appears dim
+     */
     private void dimmedPersonalityCard() {
         cheerfulCard.setAlpha(DIMMED_ALPHA);
         lazyCard.setAlpha(DIMMED_ALPHA);
@@ -85,7 +96,28 @@ public class ChoosePersonalityActivity extends AppCompatActivity {
         cleanFreakCard.setAlpha(DIMMED_ALPHA);
 
     }
-    private void onSelectedPersonality() {}
+
+    /**
+     * This method will start by making all the cards dim, then change to full opacity when a view
+     * card has been selected.
+     */
+    private void onSelectedPersonality() {
+        dimmedPersonalityCard();
+        switch (selectedPersonality){
+            case "Cheerful":
+                cheerfulCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Lazy":
+                lazyCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Playful":
+                playfulCard.setAlpha(FULL_ALPHA);
+                break;
+            case "Clean Freak":
+                cleanFreakCard.setAlpha(FULL_ALPHA);
+                break;
+        }
+    }
 
 private void goToNextStep() {
     // Get User ID from last activity
