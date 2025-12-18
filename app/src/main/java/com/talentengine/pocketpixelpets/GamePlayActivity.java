@@ -28,7 +28,6 @@ public class GamePlayActivity extends AppCompatActivity {
     private ActionDao actionDao;
 
     private int userId = -1;
-    private String username;
 
     private Pet pet;
 
@@ -74,7 +73,6 @@ public class GamePlayActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         userId = intent.getIntExtra("USER_ID", -1);
-        username = intent.getStringExtra("USERNAME");
 
         if (userId == -1) {
             Toast.makeText(this, "Error: no user ID passed to GamePlayActivity", Toast.LENGTH_SHORT).show();
@@ -147,7 +145,7 @@ public class GamePlayActivity extends AppCompatActivity {
                 updateMetersUI();
                 updateActionButtons();
 
-                showStatus("Welcome back, " + username + "!");
+                showStatus(pet.getName() + " is ready to play!");
             });
         }).start();
     }
@@ -283,7 +281,7 @@ public class GamePlayActivity extends AppCompatActivity {
         } else if ("magic".equalsIgnoreCase(bg)) {
             bgRes = R.drawable.bg_magical_forest;
         } else if ("night".equalsIgnoreCase(bg)) {
-            bgRes = R.drawable.bg_icon_night_sky;
+            bgRes = R.drawable.bg_night_sky;
         } else {
             bgRes = R.drawable.bg_fantasy_clouds;
         }
@@ -352,7 +350,7 @@ public class GamePlayActivity extends AppCompatActivity {
         if (hunger >= MAX_STAT) {
             // Overfeeding penalty: happiness -1
             pet.setHappiness(Math.max(MIN_STAT, happiness - 1));
-            showStatus("Your pet is too full!");
+            showStatus(pet.getName() + " is too full!");
         } else {
             // Hunger +1 (max 5), small happiness +1
             hunger = Math.min(MAX_STAT, hunger + 1);
@@ -375,12 +373,12 @@ public class GamePlayActivity extends AppCompatActivity {
 
         // If hunger <= 1, Play is disabled
         if (pet.getHunger() <= 1) {
-            showStatus("Your pet is too hungry to play!");
+            showStatus(pet.getName() + " is too hungry to play!");
             return;
         }
 
         if (stamina <= 0) {
-            showStatus("Your pet is too tired to play more!");
+            showStatus(pet.getName() + " is too tired to play more!");
             return;
         }
 

@@ -6,27 +6,217 @@
     android:layout_height="match_parent"
     android:background="#E9FFF6">
 
+    <!-- Title -->
     <TextView
-        android:id="@+id/screenTitle"
-        android:layout_width="wrap_content"
+        android:id="@+id/chooseFoodTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Choose Food"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:textColor="#6CA893"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="125dp"
         android:fontFamily="@font/nokiafc22"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginEnd="16dp"
+        android:gravity="center"
+        android:text="Choose a favorite food"
+        android:textColor="#6CA893"
+        android:textSize="20sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="24dp"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/nextButtonFood"
-        android:layout_width="wrap_content"
+    <!-- Subtitle -->
+    <TextView
+        android:id="@+id/chooseFoodSubtitleTextView"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="32dp"
+        android:gravity="center"
+        android:text="What snack makes your pet happiest?"
+        android:textColor="#6CA893"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseFoodTextView" />
+
+    <!-- Fish card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fishButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@android:color/transparent"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/chooseFoodSubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside the Fish card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/fish_food" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Fish"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Fruit card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/fruitButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@android:color/transparent"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fishButton"
+        app:layout_constraintTop_toBottomOf="@id/chooseFoodSubtitleTextView"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Fruit card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/fruit_food" />
+
+            <TextView
+                android:id="@+id/fruitCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Fruit"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Cookie card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cookieButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@android:color/transparent"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@+id/fishButton"
+        app:layout_constraintTop_toBottomOf="@id/fishButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Cookie card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/cookie_food" />
+            <TextView
+                android:id="@+id/cookieCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Cookie"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Seaweed card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/seaweedButton"
+        android:layout_width="154dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="24dp"
+        android:clickable="true"
+        android:focusable="true"
+        app:rippleColor="@android:color/transparent"
+        app:cardCornerRadius="18dp"
+        app:layout_constraintStart_toStartOf="@id/fruitButton"
+        app:layout_constraintTop_toBottomOf="@id/fruitButton"
+        app:strokeColor="#9BC7B5"
+        app:strokeWidth="3dp">
+
+        <!-- Content inside Seaweed card -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="12dp">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:src="@drawable/seaweed_food" />
+
+            <TextView
+                android:id="@+id/seaweedCardTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Seaweed"
+                android:textColor="#6CA893"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:backgroundTint="@color/action_color"
+        android:id="@+id/nextButtonFood"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:text="@string/next"
-        app:layout_constraintTop_toTopOf="parent"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/fishButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
