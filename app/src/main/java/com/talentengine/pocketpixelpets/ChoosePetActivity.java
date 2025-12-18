@@ -50,7 +50,7 @@ public class ChoosePetActivity extends AppCompatActivity {
         otterSpriteView = findViewById(R.id.otterSpriteView);
         turtleSpriteView = findViewById(R.id.turtleSpriteView);
         foxSpriteView = findViewById(R.id.foxSpriteView);
-        continueButton = findViewById(R.id.loginButton);
+        continueButton = findViewById(R.id.continueButton);
 
         // LOGOUT MENU IMPLEMENTATION - Force update the menu
         invalidateOptionsMenu();

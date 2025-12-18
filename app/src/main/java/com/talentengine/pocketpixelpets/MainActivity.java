@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.google.android.material.transition.MaterialFade;
-
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         //database.getOpenHelper().getWritableDatabase();
         repository = Repository.getRepository(getApplication());
 
-        MaterialButton loginButton = findViewById(R.id.loginButton);
+        MaterialButton loginButton = findViewById(R.id.continueButton);
         loginButton.setOnClickListener(v -> {
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
