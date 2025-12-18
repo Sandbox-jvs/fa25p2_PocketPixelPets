@@ -92,7 +92,7 @@ public class AdminActivity extends AppCompatActivity {
                     userCard.setFirstAction("No action here...");
                     userCard.setSecondAction("No action here...");
                     userCard.setThirdAction("No action here...");
-                    userCard.setColorRes(R.drawable.button_circle_pink);
+                    userCard.setColorRes(R.drawable.button_circle_no_color);
                 } else {
                     userCard.setPetName(userPet.getName());
                     // Get the three most recent actions and format the strings
