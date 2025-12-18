@@ -216,6 +216,7 @@ public class AdminActivity extends AppCompatActivity {
         AppDatabase.getDatabase(AdminActivity.this).userDao().deleteUserFromAllTables(userCard.getUserId());
 
         // Remove the user from the card list
+        userCardList.remove(position);
         adapter.notifyItemRemoved(position);
 
         // Update the adapter to account for the removed item and ensure it doesn't change position
