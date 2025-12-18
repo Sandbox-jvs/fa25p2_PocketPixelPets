@@ -87,7 +87,7 @@ public class AdminActivity extends AppCompatActivity {
                 Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currentUser.getUser_id());
 
                 // Only proceed if the pet has been created
-                if (userPet == null) {
+                if (!isPetComplete(userPet)) {
                     userCard.setPetName("NO PET");
                     userCard.setFirstAction("No action here...");
                     userCard.setSecondAction("No action here...");
@@ -129,6 +129,33 @@ public class AdminActivity extends AppCompatActivity {
     }
 
     /**
+     * Checks if a user's pet has been completely made. This prevents crashes caused by the fact
+     * that a user can start making a pet and logout during setup.
+     * <br><br>
+     * This method only checks the variables of a pet that are going to be accessed by the card view.
+     * <br>These attributes are:
+     * <br>- The pet's name
+     * <br>- The pet's color
+     * @param pet The pet of a user
+     * @return True if the pet is fully set up (as far as the admin is concerned), False if not
+     */
+    private boolean isPetComplete(Pet pet) {
+        if (pet == null) {
+            return false;
+        }
+
+        if (pet.getPet_color() == null) {
+            return false;
+        }
+
+        if (pet.getName() == null) {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
      * Given a user card to update and the user's pet, retrieve the 3 most recent (if applicable) actions and format it
      * @param userCard the card to update
      * @param userPet the pet of the user
@@ -145,7 +172,7 @@ public class AdminActivity extends AppCompatActivity {
 
         // Check the size and display accordingly
         // The toString() of Action has been overridden to the format of "MM-dd-yyyy HH:mm:ss"
-        if (!actions.isEmpty()) {
+        if (actions != null && !actions.isEmpty()) {
             userCard.setFirstAction(actions.get(0).toString());
 
             if (actions.size() >= 2) {

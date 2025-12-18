@@ -37,7 +37,7 @@ public interface UserDao {
     void deleteActionsByUserId(int userId);
 
     // Delete the pet owned by a given user_id
-    @Query("DELETE FROM pets WHERE user_id = user_id")
+    @Query("DELETE FROM pets WHERE user_id = :userId")
     void deletePetsByUserId(int userId);
 
     // Delete the user by their id
