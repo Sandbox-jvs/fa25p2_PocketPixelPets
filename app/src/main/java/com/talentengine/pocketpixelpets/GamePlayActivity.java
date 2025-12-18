@@ -283,7 +283,7 @@ public class GamePlayActivity extends AppCompatActivity {
         } else if ("magic".equalsIgnoreCase(bg)) {
             bgRes = R.drawable.bg_magical_forest;
         } else if ("night".equalsIgnoreCase(bg)) {
-            bgRes = R.drawable.bg_icon_night_sky;
+            bgRes = R.drawable.bg_night_sky;
         } else {
             bgRes = R.drawable.bg_fantasy_clouds;
         }
