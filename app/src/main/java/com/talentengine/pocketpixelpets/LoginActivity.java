@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                         intent = new Intent(LoginActivity.this, GamePlayActivity.class);
                     }
 
-                    intent.putExtra("USER_ID", user.getUserId());
+                    intent.putExtra("USER_ID", user.getUser_id());
                     intent.putExtra("USERNAME", user.getUsername());
                     startActivity(intent);
                     finish();

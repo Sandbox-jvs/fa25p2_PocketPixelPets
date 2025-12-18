@@ -43,12 +43,12 @@ public class SignUpActivity extends AppCompatActivity {
                 if (verifyUser()) {
                     toastMaker("User created successfully!");
                     Intent intent = new Intent(SignUpActivity.this, ChoosePetActivity.class);
-                    intent.putExtra("USER_ID", user.getUserId());
+                    intent.putExtra("USER_ID", user.getUser_id());
                     intent.putExtra("USERNAME", user.getUsername());
 
 
                     Pet pet = new Pet();
-                    pet.setUser_id(user.getUserId());
+                    pet.setUser_id(user.getUser_id());
                     AppDatabase.getDatabase(SignUpActivity.this).PetDao().insertPet(pet);
 
                     startActivity(intent);

@@ -13,13 +13,9 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -85,10 +81,10 @@ public class AdminActivity extends AppCompatActivity {
 
                 // Get the User's username and ID
                 userCard.setUsername(currentUser.getUsername());
-                userCard.setUserId(currentUser.getUserId());
+                userCard.setUserId(currentUser.getUser_id());
 
                 // Get the User's Pet and its name from the petDao
-                Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currentUser.getUserId());
+                Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currentUser.getUser_id());
 
                 // Only proceed if the pet has been created
                 if (userPet == null) {

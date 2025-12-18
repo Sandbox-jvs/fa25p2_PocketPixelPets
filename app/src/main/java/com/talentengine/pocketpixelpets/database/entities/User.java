@@ -16,7 +16,7 @@ import java.util.Objects;
 @Entity(tableName = "users")
 public class User {
     @PrimaryKey(autoGenerate = true)
-    private int userId;
+    private int user_id;
     /**
      * The saved password of the user
      */
@@ -64,16 +64,16 @@ public class User {
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return userId == user.userId && isAdmin == user.isAdmin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
+        return user_id == user.user_id && isAdmin == user.isAdmin && Objects.equals(password, user.password) && Objects.equals(created_at, user.created_at) && Objects.equals(username, user.username);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(userId, password, created_at, username, isAdmin);
+        return Objects.hash(user_id, password, created_at, username, isAdmin);
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUser_id(int user_id) {
+        this.user_id = user_id;
     }
 
     public void setCreated_at(LocalDateTime created_at) {
@@ -96,8 +96,8 @@ public class User {
         this.username = username;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUser_id() {
+        return user_id;
     }
 
     public boolean isAdmin() {
