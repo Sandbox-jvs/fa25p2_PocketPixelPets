@@ -83,8 +83,9 @@ public class AdminActivity extends AppCompatActivity {
             if (!currentUser.isAdmin()) {
                 UserCardView userCard = new UserCardView();
 
-                // Get the User's username
+                // Get the User's username and ID
                 userCard.setUsername(currentUser.getUsername());
+                userCard.setUserId(currentUser.getUserId());
 
                 // Get the User's Pet and its name from the petDao
                 Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currentUser.getUserId());

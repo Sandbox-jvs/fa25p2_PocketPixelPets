@@ -8,6 +8,7 @@ package com.talentengine.pocketpixelpets;
 import androidx.annotation.DrawableRes;
 
 public class UserCardView {
+    private int userId;
     private String username;
     private String petName;
     private String firstAction;
@@ -84,5 +85,13 @@ public class UserCardView {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 }
