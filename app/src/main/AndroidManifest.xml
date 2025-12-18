@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PocketPixelPets">
         <activity
+            android:name=".AdminActivity"
+            android:exported="false" />
+        <activity
             android:name=".NamePetActivity"
             android:exported="false" />
         <activity

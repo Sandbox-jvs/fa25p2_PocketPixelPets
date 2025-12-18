@@ -29,7 +29,7 @@ import java.util.concurrent.Executors;
  * @since 12/07/2025
  */
 @TypeConverters(LocalDateTypeConverter.class)
-@Database(entities = {Pet.class, Action.class, User.class}, version = 7, exportSchema = false)
+@Database(entities = {Pet.class, Action.class, User.class}, version = 8, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "pixelPets_database";
     //Volatile data will only ever live in RAM and ensure thread visibility; this is where the singleton lives
@@ -92,7 +92,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
 
                 User admin = new User("admin1", "admin1");
-                admin.setIs_admin(true);
+                admin.setAdmin(true);
                 userDao.insertUser(admin);
 
                 // === Test User 1 with Otter pet===

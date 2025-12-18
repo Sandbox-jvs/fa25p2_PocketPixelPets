@@ -40,7 +40,16 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (verifyUser()) {
-                    Intent intent = new Intent(LoginActivity.this, GamePlayActivity.class);
+                    Intent intent;
+
+                    // If the user is an admin, their next activity is the admin page
+                    // Otherwise, the user will be sent to the standard gameplay page
+                    if (user.isAdmin()) {
+                        intent = new Intent(LoginActivity.this, AdminActivity.class);
+                    } else {
+                        intent = new Intent(LoginActivity.this, GamePlayActivity.class);
+                    }
+
                     intent.putExtra("USER_ID", user.getUser_id());
                     intent.putExtra("USERNAME", user.getUsername());
                     startActivity(intent);

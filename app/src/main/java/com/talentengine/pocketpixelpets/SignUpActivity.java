@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.talentengine.pocketpixelpets.database.AppDatabase;
-import com.talentengine.pocketpixelpets.database.PetDao;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 import com.talentengine.pocketpixelpets.database.entities.User;
 

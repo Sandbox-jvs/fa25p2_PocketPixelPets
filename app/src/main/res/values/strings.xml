@@ -32,4 +32,12 @@
     <string name="pet_name">Pet name</string>
     <string name="give_your_new_friend_a_special_name">Give your new friend a special name!</string>
     <string name="name_your_pet">Name Your Pet</string>
+    <string name="admin_page_manage_users">Admin Page - Manage Users</string>
+    <string name="squiggles">Squiggles</string>
+    <string name="delete">Delete</string>
+    <string name="last_three_actions">Last Three Actions:</string>
+    <string name="first_action">First Action</string>
+    <string name="second_action">Second Action</string>
+    <string name="third_action">Third Action</string>
+    <string name="color_of_pet">Color of pet</string>
 </resources>
