@@ -149,13 +149,13 @@ public class AdminActivity extends AppCompatActivity {
         // Check the size and display accordingly
         // The toString() of Action has been overridden to the format of "MM-dd-yyyy HH:mm:ss"
         if (!actions.isEmpty()) {
-            userCard.setFirstAction(actions.get(0).getAction_type());
+            userCard.setFirstAction(actions.get(0).toString());
 
             if (actions.size() >= 2) {
-                userCard.setSecondAction(actions.get(1).getAction_type());
+                userCard.setSecondAction(actions.get(1).toString());
 
                 if (actions.size() >= 3) {
-                    userCard.setThirdAction(actions.get(2).getAction_type());
+                    userCard.setThirdAction(actions.get(2).toString());
                 }
             }
         }
