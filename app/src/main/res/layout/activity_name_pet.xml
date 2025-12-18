@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#E9FFF6"
+    android:fitsSystemWindows="true"
     tools:context=".NamePetActivity">
 
+    <!-- Title -->
     <TextView
+        android:id="@+id/namePetTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/namePetTitle"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="100dp"
         android:layout_marginEnd="16dp"
         android:fontFamily="@font/nokiafc22"
         android:gravity="center"
@@ -21,9 +21,12 @@
         android:textColor="#6CA893"
         android:textSize="24sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/namePetSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <!-- Subtitle -->
     <TextView
@@ -31,13 +34,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:fontFamily="@font/nokiafc22"
         android:gravity="center"
         android:text="@string/give_your_new_friend_a_special_name"
         android:textColor="#6CA893"
         android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@id/previewCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/namePetTitle" />
@@ -48,9 +52,10 @@
         android:layout_width="0dp"
         android:layout_height="250dp"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toTopOf="@id/petNameLabel"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/namePetSubtitle"
@@ -64,16 +69,18 @@
             android:contentDescription="@string/app_name" />
 
     </com.google.android.material.card.MaterialCardView>
+
     <!-- Pet Name Label -->
     <TextView
         android:id="@+id/petNameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:fontFamily="@font/nokiafc22"
         android:text="@string/pet_name"
         android:textColor="#6CA893"
         android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/petNameInputCard"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/previewCard" />
@@ -87,6 +94,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="32dp"
         app:cardCornerRadius="18dp"
+        app:layout_constraintBottom_toTopOf="@id/warningText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/petNameLabel"
@@ -122,6 +130,7 @@
         android:text="@string/you_can_t_change_this_later_so_choose_carefully"
         android:textColor="#6CA893"
         android:textSize="13sp"
+        app:layout_constraintBottom_toTopOf="@id/nextButtonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/petNameInputCard" />
@@ -131,14 +140,15 @@
         android:id="@+id/nextButtonName"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:layout_marginTop="31dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="24dp"
         android:backgroundTint="@color/action_color"
         android:fontFamily="@font/nokiafc22"
         android:text="@string/next"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/petNameLabel" />
+        app:layout_constraintTop_toBottomOf="@id/warningText" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
