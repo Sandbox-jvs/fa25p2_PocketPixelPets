@@ -33,7 +33,7 @@ public interface UserDao {
     void deleteAll();
 
     // Delete the actions where the pet_id is the same pet_id that is linked to the user_id
-    @Query("DELETE FROM actions WHERE pet_id IN (SELECT pet_id FROM pets WHERE user_id = :userId)")
+    @Query("DELETE FROM actions WHERE pet_id = (SELECT pet_id FROM pets WHERE user_id = :userId)")
     void deleteActionsByUserId(int userId);
 
     // Delete the pet owned by a given user_id
@@ -46,7 +46,7 @@ public interface UserDao {
 
     // Delete the user and its pets + actions
     @Transaction
-    default void deleteUserWithRelations(int userId) {
+    default void deleteUserFromAllTables(int userId) {
         // First delete all actions
         deleteActionsByUserId(userId);
 

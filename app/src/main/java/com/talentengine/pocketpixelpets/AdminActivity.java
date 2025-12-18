@@ -186,7 +186,7 @@ public class AdminActivity extends AppCompatActivity {
      */
     private void deleteUserFromDatabase(UserCardView userCard, int position) {
         // Remove the user from the repository
-
+        AppDatabase.getDatabase(AdminActivity.this).userDao().deleteUserFromAllTables(userCard.getUserId());
 
         // Remove the user from the card list
         adapter.notifyItemRemoved(position);
