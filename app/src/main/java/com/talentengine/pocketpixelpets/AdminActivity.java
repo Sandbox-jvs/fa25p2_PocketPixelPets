@@ -51,12 +51,17 @@ public class AdminActivity extends AppCompatActivity {
         usersRecyclerView = findViewById(R.id.usersListRecyclerView);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        // TODO: Load the users and information into the list
+        // Load the users and information into the list
         loadCardList();
 
         // TODO: Create an adapater and pass the delete action listener
+        adapter = new UserCardViewAdapter(userCardList, (user, position) -> {
+            // When the delete button is selected, we will take care of the dialog and confirmation
+            showDeleteConfirmationDialog(user, position);
+        })
 
         // TODO: Attach the adapter to the recycler view
+        usersRecyclerView.setAdapter(adapter);
 
     }
 
@@ -81,12 +86,13 @@ public class AdminActivity extends AppCompatActivity {
             userCard.setPetName(userPet.getName());
 
             // Get the three most recent actions and format the strings
+            assignThreeMostRecentActions(userCard, userPet);
 
             // Get the image res id to display
             userCard.setColorRes(getResFromColor(userPet.getPet_color()));
 
-            // Add the new user to the list
-
+            // Add the new user card to the list
+            userCardList.add(userCard);
         }
     }
 
@@ -108,6 +114,73 @@ public class AdminActivity extends AppCompatActivity {
             default:
                 return -1;
         }
+    }
+
+    /**
+     * Given a user card to update and the user's pet, retrieve the 3 most recent (if applicable) actions and format it
+     * @param userCard the card to update
+     * @param userPet the pet of the user
+     */
+    private void assignThreeMostRecentActions(UserCardView userCard, Pet userPet) {
+        // In case the pet doesn't have three actions, set the actions to default display
+        userCard.setFirstAction("No action here...");
+        userCard.setSecondAction("No action here...");
+        userCard.setThirdAction("No action here...");
+
+        // Get the three most recent actions from a given pet id
+        List<Action> actions = AppDatabase.getDatabase(AdminActivity.this)
+                .actionDao().getLastThreeActionsFromPetId(userPet.getPet_id());
+
+        // Check the size and display accordingly
+        // The toString() of Action has been overridden to the format of "MM-dd-yyyy HH:mm:ss"
+        if (!actions.isEmpty()) {
+            userCard.setFirstAction(actions.get(0).getAction_type());
+
+            if (actions.size() >= 2) {
+                userCard.setSecondAction(actions.get(1).getAction_type());
+
+                if (actions.size() >= 3) {
+                    userCard.setThirdAction(actions.get(2).getAction_type());
+                }
+            }
+        }
+    }
+
+    /**
+     * Since the recycler view adapter doesn't handle the actual implementation of deleting users,
+     * we must implement that functionality here.
+     * <br>
+     * This method shows a dialog to the admin to confirm that they want the selected user to be
+     * deleted. If so, that user, their pet, and their actions will be removed from the database
+     * and list.
+     */
+    private void showDeleteConfirmationDialog(UserCardView userCard, int position) {
+        // Setup a dialog menu, and if they want to confirm the deletion then direct to that method
+
+        new android.app.AlertDialog.Builder(this)
+                .setTitle("Delete User")
+                .setMessage("Are you sure you want to delete + " + userCard.getUsername() + "?")
+                .setPositiveButton("Delete", (dialog, which) -> {
+                    deleteUserFromDatabase(userCard, position);
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
+    }
+
+    /**
+     * Given a user's card and their position in the list, remove them from the database
+     * @param userCard the card of the user that is to be removed
+     * @param position the position of the user in the card list
+     */
+    private void deleteUserFromDatabase(UserCardView userCard, int position) {
+        // Remove the user from the repository
+
+
+        // Remove the user from the card list
+        adapter.notifyItemRemoved(position);
+
+        // Update the adapter to account for the removed item and ensure it doesn't change position
+        adapter.notifyItemRangeChanged(position, userCardList.size());
     }
 
 

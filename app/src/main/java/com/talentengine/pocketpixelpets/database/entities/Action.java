@@ -6,10 +6,12 @@
 
 package com.talentengine.pocketpixelpets.database.entities;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 @Entity(tableName = "actions")
@@ -81,5 +83,13 @@ public class Action {
     @Override
     public int hashCode() {
         return Objects.hash(action_id, pet_id, action_type, created_at);
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        // Format the date + time to MM/dd/yyyy HH:mm:ss
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM-dd-yyyy HH:mm:ss");
+        return action_type + " performed at " + created_at.format(formatter);
     }
 }
