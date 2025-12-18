@@ -27,6 +27,17 @@ public class UserCardView {
         this.username = username;
     }
 
+    /**
+     * While not initialized now, the user will eventually need the following data:
+     * <br>
+     * String: username, pet name, first action, second action, and third action
+     * <br>
+     * int: colorRes - id for what image to display, depending on the color of the pet
+     */
+    public UserCardView() {
+        // No args constructor, all variables are null
+    }
+
     public int getColorRes() {
         return colorRes;
     }
@@ -49,5 +60,29 @@ public class UserCardView {
 
     public String getUsername() {
         return username;
+    }
+
+    public void setColorRes(int colorRes) {
+        this.colorRes = colorRes;
+    }
+
+    public void setFirstAction(String firstAction) {
+        this.firstAction = firstAction;
+    }
+
+    public void setPetName(String petName) {
+        this.petName = petName;
+    }
+
+    public void setSecondAction(String secondAction) {
+        this.secondAction = secondAction;
+    }
+
+    public void setThirdAction(String thirdAction) {
+        this.thirdAction = thirdAction;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }
