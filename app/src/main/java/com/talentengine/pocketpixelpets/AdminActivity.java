@@ -48,19 +48,21 @@ public class AdminActivity extends AppCompatActivity {
         // LOGOUT MENU IMPLEMENTATION - Force update the menu
         invalidateOptionsMenu();
 
+
         usersRecyclerView = findViewById(R.id.usersListRecyclerView);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
 
         // Load the users and information into the list
         loadCardList();
 
-        // TODO: Create an adapater and pass the delete action listener
+        // Create an adapater and pass the delete action listener
         adapter = new UserCardViewAdapter(userCardList, (user, position) -> {
             // When the delete button is selected, we will take care of the dialog and confirmation
             showDeleteConfirmationDialog(user, position);
-        })
+        });
 
-        // TODO: Attach the adapter to the recycler view
+        // Attach the adapter to the recycler view
         usersRecyclerView.setAdapter(adapter);
 
     }
@@ -76,23 +78,36 @@ public class AdminActivity extends AppCompatActivity {
         // Cycle through each user in the database
         List<User> usersInDatabase = AppDatabase.getDatabase(AdminActivity.this).userDao().getAllUsers();
 
-        for (User currenUser : usersInDatabase) {
-            UserCardView userCard = new UserCardView();
-            // Get the User's username
-            userCard.setUsername(currenUser.getUsername());
+        for (User currentUser : usersInDatabase) {
+            // Admins CAN NOT be managed
+            if (!currentUser.isAdmin()) {
+                UserCardView userCard = new UserCardView();
 
-            // Get the User's Pet and its name from the petDao
-            Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currenUser.getUserId());
-            userCard.setPetName(userPet.getName());
+                // Get the User's username
+                userCard.setUsername(currentUser.getUsername());
 
-            // Get the three most recent actions and format the strings
-            assignThreeMostRecentActions(userCard, userPet);
+                // Get the User's Pet and its name from the petDao
+                Pet userPet = AppDatabase.getDatabase(AdminActivity.this).PetDao().getPetFromOwnerUserId(currentUser.getUserId());
 
-            // Get the image res id to display
-            userCard.setColorRes(getResFromColor(userPet.getPet_color()));
+                // Only proceed if the pet has been created
+                if (userPet == null) {
+                    userCard.setPetName("NO PET");
+                    userCard.setFirstAction("No action here...");
+                    userCard.setSecondAction("No action here...");
+                    userCard.setThirdAction("No action here...");
+                    userCard.setColorRes(R.drawable.button_circle_pink);
+                } else {
+                    userCard.setPetName(userPet.getName());
+                    // Get the three most recent actions and format the strings
+                    assignThreeMostRecentActions(userCard, userPet);
 
-            // Add the new user card to the list
-            userCardList.add(userCard);
+                    // Get the image res id to display
+                    userCard.setColorRes(getResFromColor(userPet.getPet_color()));
+                }
+
+                // Add the new user card to the list
+                userCardList.add(userCard);
+            }
         }
     }
 
@@ -159,7 +174,7 @@ public class AdminActivity extends AppCompatActivity {
 
         new android.app.AlertDialog.Builder(this)
                 .setTitle("Delete User")
-                .setMessage("Are you sure you want to delete + " + userCard.getUsername() + "?")
+                .setMessage("Are you sure you want to delete " + userCard.getUsername() + "?")
                 .setPositiveButton("Delete", (dialog, which) -> {
                     deleteUserFromDatabase(userCard, position);
                 })
