@@ -14,6 +14,7 @@ public class UserCardView {
     private String firstAction;
     private String secondAction;
     private String thirdAction;
+    private String lastThreeActionsHeader;
 
     // The drawable sprite for the pet color
    @DrawableRes
@@ -93,5 +94,13 @@ public class UserCardView {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getLastThreeActionsHeader() {
+        return lastThreeActionsHeader;
+    }
+
+    public void setLastThreeActionsHeader(String lastThreeActionsHeader) {
+        this.lastThreeActionsHeader = lastThreeActionsHeader;
     }
 }

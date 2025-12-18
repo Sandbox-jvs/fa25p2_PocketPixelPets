@@ -52,11 +52,9 @@ public class AdminActivity extends AppCompatActivity {
         // Load the users and information into the list
         loadCardList();
 
-        // Create an adapater and pass the delete action listener
-        adapter = new UserCardViewAdapter(userCardList, (user, position) -> {
-            // When the delete button is selected, we will take care of the dialog and confirmation
-            showDeleteConfirmationDialog(user, position);
-        });
+        // Create an adapter and pass the delete action listener
+        // When the delete button is selected, we will take care of the dialog and confirmation
+        adapter = new UserCardViewAdapter(userCardList, this::showDeleteConfirmationDialog);
 
         // Attach the adapter to the recycler view
         usersRecyclerView.setAdapter(adapter);
@@ -161,10 +159,10 @@ public class AdminActivity extends AppCompatActivity {
      * @param userPet the pet of the user
      */
     private void assignThreeMostRecentActions(UserCardView userCard, Pet userPet) {
-        // In case the pet doesn't have three actions, set the actions to default display
-        userCard.setFirstAction("No action here...");
-        userCard.setSecondAction("No action here...");
-        userCard.setThirdAction("No action here...");
+        // Begin all actions as empty
+        userCard.setFirstAction("");
+        userCard.setSecondAction("");
+        userCard.setThirdAction("");
 
         // Get the three most recent actions from a given pet id
         List<Action> actions = AppDatabase.getDatabase(AdminActivity.this)
@@ -173,15 +171,20 @@ public class AdminActivity extends AppCompatActivity {
         // Check the size and display accordingly
         // The toString() of Action has been overridden to the format of "MM-dd-yyyy HH:mm:ss"
         if (actions != null && !actions.isEmpty()) {
+            userCard.setLastThreeActionsHeader("Most Recent Action");
             userCard.setFirstAction(actions.get(0).toString());
 
             if (actions.size() >= 2) {
+                userCard.setLastThreeActionsHeader("Most Recent Actions");
                 userCard.setSecondAction(actions.get(1).toString());
 
                 if (actions.size() >= 3) {
                     userCard.setThirdAction(actions.get(2).toString());
                 }
             }
+        } else {
+            // In case the pet doesn't have three actions, set the actions to default display
+            userCard.setLastThreeActionsHeader("No Actions Yet");
         }
     }
 

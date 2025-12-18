@@ -48,6 +48,7 @@ public class UserCardViewAdapter extends RecyclerView.Adapter<UserCardViewAdapte
         holder.firstAction.setText(userCardView.getFirstAction());
         holder.secondAction.setText(userCardView.getSecondAction());
         holder.thirdAction.setText(userCardView.getThirdAction());
+        holder.lastThreeActionsHeader.setText(userCardView.getLastThreeActionsHeader());
 
         holder.petColorImage.setImageResource(userCardView.getColorRes());
 
@@ -75,6 +76,7 @@ public class UserCardViewAdapter extends RecyclerView.Adapter<UserCardViewAdapte
         TextView firstAction;
         TextView secondAction;
         TextView thirdAction;
+        TextView lastThreeActionsHeader;
         ImageView petColorImage;
         MaterialButton deleteButton;
 
@@ -88,6 +90,7 @@ public class UserCardViewAdapter extends RecyclerView.Adapter<UserCardViewAdapte
             thirdAction = itemView.findViewById(R.id.thirdNewestActionTextView);
             petColorImage = itemView.findViewById(R.id.petColorImageView);
             deleteButton = itemView.findViewById(R.id.deleteUserButton);
+            lastThreeActionsHeader = itemView.findViewById(R.id.lastThreeActionsTextView);
         }
     }
 
