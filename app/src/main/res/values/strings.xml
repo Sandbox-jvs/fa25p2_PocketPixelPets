@@ -32,4 +32,5 @@
     <string name="pet_name">Pet name</string>
     <string name="give_your_new_friend_a_special_name">Give your new friend a special name!</string>
     <string name="name_your_pet">Name Your Pet</string>
+    <string name="admin_page_manage_users">Admin Page - Manage Users</string>
 </resources>
