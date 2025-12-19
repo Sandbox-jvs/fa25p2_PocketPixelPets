@@ -6,6 +6,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.talentengine.pocketpixelpets.database.AppDatabase;
+import com.talentengine.pocketpixelpets.database.PetDao;
 import com.talentengine.pocketpixelpets.database.entities.Pet;
 
 /**
@@ -121,12 +122,15 @@ private void goToNextStep() {
     Intent lastIntent = getIntent();
     int user_id = lastIntent.getIntExtra("USER_ID", -1);
 
-    // Update the Pet in the database
-    Pet pet = AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().getPetFromOwnerUserId(user_id);
-    pet.setPet_personality(selectedPersonality);
-    // Apply default stats depending on the selected personality
-    personalityStats(pet);
-    AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao().updatePet(pet);
+    PetDao dao = AppDatabase.getDatabase(ChoosePersonalityActivity.this).PetDao();
+    Pet pet = dao.getPetFromOwnerUserId(user_id);
+
+    if(pet != null) {
+        pet.setPet_personality(selectedPersonality);
+        // Apply default stats depending on the selected personality
+        personalityStats(pet);
+        dao.updatePet(pet);
+    }
 
     // Pass username to ChooseFoodActivity
     Intent next = new Intent(ChoosePersonalityActivity.this, ChooseFoodActivity.class);

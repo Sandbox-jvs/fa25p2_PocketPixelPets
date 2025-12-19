@@ -22,7 +22,6 @@ import java.util.concurrent.Executors;
 /**
  * Creates a Room Database for the application. Class implements a singleton pattern through a static method
  * getDatabase(), which ensures that only one database is created for the entire application.
- *
  * The Database annotation defines which classes are stored as tables in the Room database. Room
  * generates tables for each entity class.
  * @author Jessica Sandoval
@@ -43,12 +42,6 @@ public abstract class AppDatabase extends RoomDatabase {
      */
     public static final int NUMBER_OF_THREADS = 4;
 
-    /**
-     * Child processee that will run in the background. Create a service that will supply threads for us
-     * to do database operations. Create them all at startup and put them in a pool (Executors), and we do
-     * need to do database operations, pull something out of the pool (newFixedThreadPool), then return it
-     * to the pool when finished.
-     */
     static final ExecutorService databaseWriteExecutor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
     /**
@@ -56,8 +49,7 @@ public abstract class AppDatabase extends RoomDatabase {
      * from occurring where two process conflict - Ex: One is trying to query from a table while another
      * attempts to write.
      *
-     * @param context
-     * @return an instance of out virtual pet database
+     * @return an instance of our virtual pet database
      */
     public static AppDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
