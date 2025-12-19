@@ -17,6 +17,14 @@ import static org.junit.Assert.*;
 
 import android.view.View;
 
+/**
+ * Test file that checks if the UI launches successfully, checks that the default opacity for the
+ * material card views are low, checks if the selected card is the only one highlighted, checks that
+ * the next button does not navigate to the next activity without a selection made.
+ * @author Jessica Sandoval
+ * @since 12/18/2025
+ */
+
 @RunWith(AndroidJUnit4.class)
 public class ChoosePersonalityActivityTest {
     public static final float IS_DIMMED_ALPHA = 0.3f;
@@ -32,7 +40,6 @@ public class ChoosePersonalityActivityTest {
     View lazyCard;
     View playfulCard;
     View cleanFreakCard;
-    View nextButtonPersonality;
 
     /**
      * Creates a rule to launch the activity automatically for every test method
@@ -94,7 +101,7 @@ public class ChoosePersonalityActivityTest {
             cleanFreakAlpha = cleanFreakCard.getAlpha();
 
             //Compare the values to ensure only the cheerful card is highlighted
-            assertEquals(IS_FULL_ALPHA, cheerfulAlpha, 1.0f);
+            assertEquals(IS_FULL_ALPHA, cheerfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, lazyAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, playfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cleanFreakAlpha, 0.1f);
@@ -122,7 +129,7 @@ public class ChoosePersonalityActivityTest {
             cleanFreakAlpha = cleanFreakCard.getAlpha();
 
             //Compare the values to ensure only the cheerful card is highlighted
-            assertEquals(IS_FULL_ALPHA, lazyAlpha, 1.0f);
+            assertEquals(IS_FULL_ALPHA, lazyAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cheerfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, playfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cleanFreakAlpha, 0.1f);
@@ -150,7 +157,7 @@ public class ChoosePersonalityActivityTest {
             cleanFreakAlpha = cleanFreakCard.getAlpha();
 
             //Compare the values to ensure only the cheerful card is highlighted
-            assertEquals(IS_FULL_ALPHA, playfulAlpha, 1.0f);
+            assertEquals(IS_FULL_ALPHA, playfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cheerfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, lazyAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cleanFreakAlpha, 0.1f);
@@ -177,7 +184,7 @@ public class ChoosePersonalityActivityTest {
             playfulAlpha = playfulCard.getAlpha();
 
             //Compare the values to ensure only the cheerful card is highlighted
-            assertEquals(IS_FULL_ALPHA, cleanFreakAlpha, 1.0f);
+            assertEquals(IS_FULL_ALPHA, cleanFreakAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, cheerfulAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, lazyAlpha, 0.1f);
             assertEquals(IS_DIMMED_ALPHA, playfulAlpha, 0.1f);
